@@ -100,9 +100,15 @@ map_only |>
 ```
 
 
-
 # Analysis
 
+## Multiple observers
+
+## Artificial intelligence and automated classification
+
+## Impact of privacy-constrained data on biological metrics
+
+# Discussion
 
 
 # Acknowledgements
