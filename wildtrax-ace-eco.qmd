@@ -22,7 +22,6 @@ github: https://github.com/ABbiodiversity/wildtrax-ace-eco
 #| include: false
 #| echo: false
 
-
 # Initializaton for guest account
 
 library(wildrtrax)
@@ -31,6 +30,9 @@ library(tidyverse)
 Sys.setenv(WT_USERNAME = "guest", WT_PASSWORD = "Apple123")
 
 wt_auth()
+
+load("wae.RData")
+#save.image("wae.RData")
 
 ```
 
@@ -57,8 +59,6 @@ Effectively leveraging birds as ecological indicators hinges on robust, collabor
 
 # Data management and processing
 
-
-
 ```{r}
 #| echo: false
 #| eval: true
@@ -81,6 +81,25 @@ wt_get_download_summary('ARU') |>
   scale_fill_viridis_d(option = "mako") +
   theme_bw()
 ```
+
+```{r}
+
+# Use DD to get Map Only. Start with a few common species
+
+species_list <- c('White-throated Sparrow','Yellow Warbler','Swainson\'s Thrush', 'Tennessee Warbler','American Redstart','American Robin','American Crow', 'Red-eyed Vireo', 'Yellow-rumped Warbler')
+
+map_only <- wt_dd_summary('ARU', species = species_list, boundary = NULL)[[1]] |>
+  select(projectId) |>
+  distinct()
+
+map_only_not_in_public <- setdiff(map_only$projectId, all_public_projects$project_id)
+
+map_only |>
+  filter(projectId %in% map_only_not_in_public)
+
+```
+
+
 
 # Analysis
 
