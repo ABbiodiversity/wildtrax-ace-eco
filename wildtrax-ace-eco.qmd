@@ -1,6 +1,91 @@
 ---
 title: "WildTrax: an open platform for the management, storage, processing, sharing and discovery of avian data"
-format: html
+format:
+  html:
+    grid:
+      margin-width: 300px
+navbar: right
+theme: cosmo
+date: last-modified
 editor: visual
+bibliography: references.bib
+toc: true
+toc-depth: 3
+toc-expand: true
+toc-location: left
+styles: styles.css
+github: https://github.com/ABbiodiversity/wildtrax-ace-eco
 ---
 
+```{r}
+#| eval: true
+#| include: false
+#| echo: false
+
+
+# Initializaton for guest account
+
+library(wildrtrax)
+library(tidyverse)
+
+Sys.setenv(WT_USERNAME = "guest", WT_PASSWORD = "Apple123")
+
+wt_auth()
+
+```
+
+# Abstract
+
+As environmental sensors become essential tools for monitoring and assessing trends in bird populations, their effective use depends on robust systems for managing the large datasets they generate. WildTrax is a web-based platform designed to manage, store, process, share, and discover environmental sensor data at local to international scales. By enabling researchers to address broad-scale ecological questions through novel analytical approaches, WildTrax strengthens the broader network of avian data, fostering collaboration and enhancing data sharing to support bird conservation in Canada.
+
+# Context and rationale
+
+## Birds as ecological indicators
+
+Birds have long been recognized as reliable ecological indicators due to their sensitivity to environmental changes, broad distribution across ecosystems, and measurable population dynamics. They can signal shifts in ecosystem health, function, and biodiversity, providing critical insights for conservation and management. However, there are challenges in their application as indicators, including spatial, seasonal, and habitat biases, as well as insufficient consideration of statistical uncertainty and temporal autocorrelation in multi-species bird indicators (@gregory2003using, @fraixedas2020state). Addressing these gaps is crucial for improving their efficacy in informing Canada's commitments under the Global Biodiversity Framework. Birds are also valuable indicators because they occupy diverse niches, have well-studied life histories, and often correlate with the health of other taxa (@fleishman2005using). Their utility spans ecosystem monitoring, habitat quality assessment, and gauging the impact of environmental stressors such as land use change, climate change, and pollution (@niemi1997critical, @mekonen2017birds). Advances in statistical modeling now allow for better integration of uncertainty, phylogenetic relationships, and temporal autocorrelation, enhancing the reliability of bird-based indicators (@fraixedas2020state).
+
+## Environmental sensors and big data
+
+Environmental sensors, such as autonomous recording units (ARUs) and remote camera traps, are reshaping biodiversity monitoring by providing continuous, high-resolution, and large-scale data collection. These technologies mitigate many of the limitations inherent in traditional field surveys, offering reliable, replicable, and non-invasive methods for observing bird populations and their habitats. ARUs are particularly effective for capturing vocalizations, enabling detailed identification and temporal analysis of species presence, abundance, and community dynamics over time (@bock1984birds). Remote camera traps complement these efforts by monitoring species activity and interactions across diverse habitats. In an era where ecological science increasingly overlaps with the data-driven revolution, the integration of such sensors contributes to the accumulation of extensive datasets, often categorized as "big data" (@hampton2013big). These datasets, characterized by their volume, variety, veracity, and velocity, frequently exceed the capacities of traditional tools and demand innovative approaches for analysis (@farley2018situating). Platforms like WildTrax exemplify the potential of centralized systems to standardize, integrate, and share sensor-derived data, fostering cross-disciplinary collaborations and enabling comprehensive insights into biodiversity patterns. The transformative power of environmental sensors lies in their ability to address biases and gaps in conventional monitoring while enabling advanced modeling techniques that incorporate temporal autocorrelation, spatial heterogeneity, and even phylogenetic relationships among species (@peters2014harnessing). However, as the demand for scalable and timely ecological insights grows, so do the challenges of big data ecosystems. Ensuring data quality, equitable access, and long-term preservation requires robust socio-technical frameworks, as emphasized by @shin2015ecological. Additionally, the computational demands of analyzing these large datasets often necessitate a combination of machine learning techniques and traditional ecological models. By integrating diverse datasets and harnessing the opportunities presented by big data, environmental sensors are poised to bridge the gap between raw ecological data and actionable conservation strategies. These tools not only enhance our ability to monitor and manage ecosystems but also contribute to the broader goal of ensuring ecological sustainability in an increasingly data-driven world (@nathan2022big).
+
+## Collaborative data makes collaborative action
+
+Effectively leveraging birds as ecological indicators hinges on robust, collaborative, and accessible data management frameworks. Platforms like WildTrax play a pivotal role in this landscape by integrating environmental sensor data into a centralized system that bridges gaps across disciplines and scales. WildTrax enables researchers and decision-makers to harmonize diverse datasets, ensuring consistency and quality in biodiversity monitoring efforts (@stephenson2020inventory). It supports advanced analyses for species- and community-level assessments, transforming raw environmental data into actionable insights that inform conservation strategies and policy development (@fox2017generating). By addressing limitations in traditional methodologies and promoting data-sharing initiatives, platforms like WildTrax contribute to a more cohesive understanding of ecological trends (@buxton2021key). Moreover, such systems foster collaboration among stakeholders, helping to align conservation priorities at regional, national, and even global scales (@kartez2008information). Through these efforts, WildTrax exemplifies the potential of integrated data systems to catalyze evidence-based biodiversity conservation and ecological management.
+
+# Infrastructure and design
+
+
+# Data management and processing
+
+
+
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+#| message: false
+#| include: true
+#| fig-align: center
+#| fig-cap: All publicly accessible data in WildTrax
+#| label: fig-public-data
+
+wt_get_download_summary('ARU') |>
+  as_tibble() |>
+  filter(!status == "Active") |>
+  mutate(organization = case_when(grepl('NP$|LLYK',organization) ~ 'Parks Canada', 
+                                  grepl('CWS|ECCC|SCF',organization) ~ 'Environment and Climate Change Canada',
+                                  grepl('VGLFC-CFS',organization) ~ 'Natural Resources Canada',
+                                  TRUE ~ organization)) |>
+  ggplot(aes(x=status, y=tasks, fill=organization)) +
+  geom_bar(stat = "identity") +
+  scale_fill_viridis_d(option = "mako") +
+  theme_bw()
+```
+
+# Analysis
+
+
+
+# Acknowledgements
+
+We gratefully acknowledge the contributions of our collaborators and supporters, including

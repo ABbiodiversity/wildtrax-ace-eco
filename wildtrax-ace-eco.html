@@ -2,12 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-07-17">
 
-<title>wildtrax-ace-eco</title>
+<title>WildTrax: an open platform for the management, storage, processing, sharing and discovery of avian data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +21,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-</style>
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="wildtrax-ace-eco_files/libs/clipboard/clipboard.min.js"></script>
@@ -71,15 +58,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent">
+<body>
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#context-and-rationale" id="toc-context-and-rationale" class="nav-link" data-scroll-target="#context-and-rationale">Context and rationale</a>
+  <ul class="collapse">
+  <li><a href="#birds-as-ecological-indicators" id="toc-birds-as-ecological-indicators" class="nav-link" data-scroll-target="#birds-as-ecological-indicators">Birds as ecological indicators</a></li>
+  <li><a href="#environmental-sensors-and-big-data" id="toc-environmental-sensors-and-big-data" class="nav-link" data-scroll-target="#environmental-sensors-and-big-data">Environmental sensors and big data</a></li>
+  <li><a href="#collaborative-data-makes-collaborative-action" id="toc-collaborative-data-makes-collaborative-action" class="nav-link" data-scroll-target="#collaborative-data-makes-collaborative-action">Collaborative data makes collaborative action</a></li>
+  </ul></li>
+  <li><a href="#infrastructure-and-design" id="toc-infrastructure-and-design" class="nav-link" data-scroll-target="#infrastructure-and-design">Infrastructure and design</a></li>
+  <li><a href="#data-management-and-processing" id="toc-data-management-and-processing" class="nav-link" data-scroll-target="#data-management-and-processing">Data management and processing</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">wildtrax-ace-eco</h1>
+<h1 class="title">WildTrax: an open platform for the management, storage, processing, sharing and discovery of avian data</h1>
 </div>
 
 
@@ -87,6 +94,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 17, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -96,29 +109,101 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<section id="abstract" class="level1">
+<h1>Abstract</h1>
+<p>As environmental sensors become essential tools for monitoring and assessing trends in bird populations, their effective use depends on robust systems for managing the large datasets they generate. WildTrax is a web-based platform designed to manage, store, process, share, and discover environmental sensor data at local to international scales. By enabling researchers to address broad-scale ecological questions through novel analytical approaches, WildTrax strengthens the broader network of avian data, fostering collaboration and enhancing data sharing to support bird conservation in Canada.</p>
 </section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<section id="context-and-rationale" class="level1">
+<h1>Context and rationale</h1>
+<section id="birds-as-ecological-indicators" class="level2">
+<h2 class="anchored" data-anchor-id="birds-as-ecological-indicators">Birds as ecological indicators</h2>
+<p>Birds have long been recognized as reliable ecological indicators due to their sensitivity to environmental changes, broad distribution across ecosystems, and measurable population dynamics. They can signal shifts in ecosystem health, function, and biodiversity, providing critical insights for conservation and management. However, there are challenges in their application as indicators, including spatial, seasonal, and habitat biases, as well as insufficient consideration of statistical uncertainty and temporal autocorrelation in multi-species bird indicators (<span class="citation" data-cites="gregory2003using">Gregory et al. (<a href="#ref-gregory2003using" role="doc-biblioref">2003</a>)</span>, <span class="citation" data-cites="fraixedas2020state">Fraixedas et al. (<a href="#ref-fraixedas2020state" role="doc-biblioref">2020</a>)</span>). Addressing these gaps is crucial for improving their efficacy in informing Canada’s commitments under the Global Biodiversity Framework. Birds are also valuable indicators because they occupy diverse niches, have well-studied life histories, and often correlate with the health of other taxa (<span class="citation" data-cites="fleishman2005using">Fleishman et al. (<a href="#ref-fleishman2005using" role="doc-biblioref">2005</a>)</span>). Their utility spans ecosystem monitoring, habitat quality assessment, and gauging the impact of environmental stressors such as land use change, climate change, and pollution (<span class="citation" data-cites="niemi1997critical">Niemi et al. (<a href="#ref-niemi1997critical" role="doc-biblioref">1997</a>)</span>, <span class="citation" data-cites="mekonen2017birds">Mekonen (<a href="#ref-mekonen2017birds" role="doc-biblioref">2017</a>)</span>). Advances in statistical modeling now allow for better integration of uncertainty, phylogenetic relationships, and temporal autocorrelation, enhancing the reliability of bird-based indicators (<span class="citation" data-cites="fraixedas2020state">Fraixedas et al. (<a href="#ref-fraixedas2020state" role="doc-biblioref">2020</a>)</span>).</p>
+</section>
+<section id="environmental-sensors-and-big-data" class="level2">
+<h2 class="anchored" data-anchor-id="environmental-sensors-and-big-data">Environmental sensors and big data</h2>
+<p>Environmental sensors, such as autonomous recording units (ARUs) and remote camera traps, are reshaping biodiversity monitoring by providing continuous, high-resolution, and large-scale data collection. These technologies mitigate many of the limitations inherent in traditional field surveys, offering reliable, replicable, and non-invasive methods for observing bird populations and their habitats. ARUs are particularly effective for capturing vocalizations, enabling detailed identification and temporal analysis of species presence, abundance, and community dynamics over time (<span class="citation" data-cites="bock1984birds">Bock and Webb (<a href="#ref-bock1984birds" role="doc-biblioref">1984</a>)</span>). Remote camera traps complement these efforts by monitoring species activity and interactions across diverse habitats. In an era where ecological science increasingly overlaps with the data-driven revolution, the integration of such sensors contributes to the accumulation of extensive datasets, often categorized as “big data” (<span class="citation" data-cites="hampton2013big">Hampton et al. (<a href="#ref-hampton2013big" role="doc-biblioref">2013</a>)</span>). These datasets, characterized by their volume, variety, veracity, and velocity, frequently exceed the capacities of traditional tools and demand innovative approaches for analysis (<span class="citation" data-cites="farley2018situating">Farley et al. (<a href="#ref-farley2018situating" role="doc-biblioref">2018</a>)</span>). Platforms like WildTrax exemplify the potential of centralized systems to standardize, integrate, and share sensor-derived data, fostering cross-disciplinary collaborations and enabling comprehensive insights into biodiversity patterns. The transformative power of environmental sensors lies in their ability to address biases and gaps in conventional monitoring while enabling advanced modeling techniques that incorporate temporal autocorrelation, spatial heterogeneity, and even phylogenetic relationships among species (<span class="citation" data-cites="peters2014harnessing">Peters et al. (<a href="#ref-peters2014harnessing" role="doc-biblioref">2014</a>)</span>). However, as the demand for scalable and timely ecological insights grows, so do the challenges of big data ecosystems. Ensuring data quality, equitable access, and long-term preservation requires robust socio-technical frameworks, as emphasized by <span class="citation" data-cites="shin2015ecological">Shin and Choi (<a href="#ref-shin2015ecological" role="doc-biblioref">2015</a>)</span>. Additionally, the computational demands of analyzing these large datasets often necessitate a combination of machine learning techniques and traditional ecological models. By integrating diverse datasets and harnessing the opportunities presented by big data, environmental sensors are poised to bridge the gap between raw ecological data and actionable conservation strategies. These tools not only enhance our ability to monitor and manage ecosystems but also contribute to the broader goal of ensuring ecological sustainability in an increasingly data-driven world (<span class="citation" data-cites="nathan2022big">Nathan et al. (<a href="#ref-nathan2022big" role="doc-biblioref">2022</a>)</span>).</p>
+</section>
+<section id="collaborative-data-makes-collaborative-action" class="level2">
+<h2 class="anchored" data-anchor-id="collaborative-data-makes-collaborative-action">Collaborative data makes collaborative action</h2>
+<p>Effectively leveraging birds as ecological indicators hinges on robust, collaborative, and accessible data management frameworks. Platforms like WildTrax play a pivotal role in this landscape by integrating environmental sensor data into a centralized system that bridges gaps across disciplines and scales. WildTrax enables researchers and decision-makers to harmonize diverse datasets, ensuring consistency and quality in biodiversity monitoring efforts (<span class="citation" data-cites="stephenson2020inventory">Stephenson and Stengel (<a href="#ref-stephenson2020inventory" role="doc-biblioref">2020</a>)</span>). It supports advanced analyses for species- and community-level assessments, transforming raw environmental data into actionable insights that inform conservation strategies and policy development (<span class="citation" data-cites="fox2017generating">Fox et al. (<a href="#ref-fox2017generating" role="doc-biblioref">2017</a>)</span>). By addressing limitations in traditional methodologies and promoting data-sharing initiatives, platforms like WildTrax contribute to a more cohesive understanding of ecological trends (<span class="citation" data-cites="buxton2021key">Buxton et al. (<a href="#ref-buxton2021key" role="doc-biblioref">2021</a>)</span>). Moreover, such systems foster collaboration among stakeholders, helping to align conservation priorities at regional, national, and even global scales (<span class="citation" data-cites="kartez2008information">Kartez and Casto (<a href="#ref-kartez2008information" role="doc-biblioref">2008</a>)</span>). Through these efforts, WildTrax exemplifies the potential of integrated data systems to catalyze evidence-based biodiversity conservation and ecological management.</p>
+</section>
+</section>
+<section id="infrastructure-and-design" class="level1">
+<h1>Infrastructure and design</h1>
+</section>
+<section id="data-management-and-processing" class="level1">
+<h1>Data management and processing</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-public-data" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-public-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="wildtrax-ace-eco_files/figure-html/fig-public-data-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-public-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: All publicly accessible data in WildTrax
+</figcaption>
+</figure>
 </div>
 </div>
-<p>You can add options to executable code like this</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
 </div>
-</div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+</section>
+<section id="analysis" class="level1">
+<h1>Analysis</h1>
+</section>
+<section id="acknowledgements" class="level1">
+<h1>Acknowledgements</h1>
+<p>We gratefully acknowledge the contributions of our collaborators and supporters, including</p>
+
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-bock1984birds" class="csl-entry" role="listitem">
+Bock, Carl E, and Betsy Webb. 1984. <span>“Birds as Grazing Indicator Species in Southeastern Arizona.”</span> <em>The Journal of Wildlife Management</em> 48 (3): 1045–49.
+</div>
+<div id="ref-buxton2021key" class="csl-entry" role="listitem">
+Buxton, Rachel T, Joseph R Bennett, Andrea J Reid, Charles Shulman, Steven J Cooke, Charles M Francis, Elizabeth A Nyboer, et al. 2021. <span>“Key Information Needs to Move from Knowledge to Action for Biodiversity Conservation in Canada.”</span> <em>Biological Conservation</em> 256: 108983.
+</div>
+<div id="ref-farley2018situating" class="csl-entry" role="listitem">
+Farley, Scott S, Andria Dawson, Simon J Goring, and John W Williams. 2018. <span>“Situating Ecology as a Big-Data Science: Current Advances, Challenges, and Solutions.”</span> <em>BioScience</em> 68 (8): 563–76.
+</div>
+<div id="ref-fleishman2005using" class="csl-entry" role="listitem">
+Fleishman, Erica, James R Thomson, Ralph Mac Nally, Dennis D Murphy, and John P Fay. 2005. <span>“Using Indicator Species to Predict Species Richness of Multiple Taxonomic Groups.”</span> <em>Conservation Biology</em> 19 (4): 1125–37.
+</div>
+<div id="ref-fox2017generating" class="csl-entry" role="listitem">
+Fox, Helen E, Megan D Barnes, Gabby N Ahmadia, Grace Kao, Louise Glew, Kelly Haisfield, Nur Ismu Hidayat, et al. 2017. <span>“Generating Actionable Data for Evidence-Based Conservation: The Global Center of Marine Biodiversity as a Case Study.”</span> <em>Biological Conservation</em> 210: 299–309.
+</div>
+<div id="ref-fraixedas2020state" class="csl-entry" role="listitem">
+Fraixedas, Sara, Andreas Lindén, Markus Piha, Mar Cabeza, Richard Gregory, and Aleksi Lehikoinen. 2020. <span>“A State-of-the-Art Review on Birds as Indicators of Biodiversity: Advances, Challenges, and Future Directions.”</span> <em>Ecological Indicators</em> 118: 106728.
+</div>
+<div id="ref-gregory2003using" class="csl-entry" role="listitem">
+Gregory, Richard D, David Noble, Rob Field, John Marchant, M Raven, and DW Gibbons. 2003. <span>“Using Birds as Indicators of Biodiversity.”</span> <em>Ornis Hungarica</em> 12 (13): 11–24.
+</div>
+<div id="ref-hampton2013big" class="csl-entry" role="listitem">
+Hampton, Stephanie E, Carly A Strasser, Joshua J Tewksbury, Wendy K Gram, Amber E Budden, Archer L Batcheller, Clifford S Duke, and John H Porter. 2013. <span>“Big Data and the Future of Ecology.”</span> <em>Frontiers in Ecology and the Environment</em> 11 (3): 156–62.
+</div>
+<div id="ref-kartez2008information" class="csl-entry" role="listitem">
+Kartez, Jack D, and Molly P Casto. 2008. <span>“Information into Action: Biodiversity Data Outreach and Municipal Land Conservation.”</span> <em>Journal of the American Planning Association</em> 74 (4): 467–80.
+</div>
+<div id="ref-mekonen2017birds" class="csl-entry" role="listitem">
+Mekonen, Sefi. 2017. <span>“Birds as Biodiversity and Environmental Indicator.”</span> <em>Indicator</em> 7 (21).
+</div>
+<div id="ref-nathan2022big" class="csl-entry" role="listitem">
+Nathan, Ran, Christopher T Monk, Robert Arlinghaus, Timo Adam, Josep Alós, Michael Assaf, Henrik Baktoft, et al. 2022. <span>“Big-Data Approaches Lead to an Increased Understanding of the Ecology of Animal Movement.”</span> <em>Science</em> 375 (6582): eabg1780.
+</div>
+<div id="ref-niemi1997critical" class="csl-entry" role="listitem">
+Niemi, Gerald J, Joann M Hanowski, Ann R Lima, Tom Nicholls, and Norm Weiland. 1997. <span>“A Critical Analysis on the Use of Indicator Species in Management.”</span> <em>The Journal of Wildlife Management</em>, 1240–52.
+</div>
+<div id="ref-peters2014harnessing" class="csl-entry" role="listitem">
+Peters, Debra PC, Kris M Havstad, Judy Cushing, Craig Tweedie, Olac Fuentes, and Natalia Villanueva-Rosales. 2014. <span>“Harnessing the Power of Big Data: Infusing the Scientific Method with Machine Learning to Transform Ecology.”</span> <em>Ecosphere</em> 5 (6): 1–15.
+</div>
+<div id="ref-shin2015ecological" class="csl-entry" role="listitem">
+Shin, Dong-Hee, and Min Jae Choi. 2015. <span>“Ecological Views of Big Data: Perspectives and Issues.”</span> <em>Telematics and Informatics</em> 32 (2): 311–20.
+</div>
+<div id="ref-stephenson2020inventory" class="csl-entry" role="listitem">
+Stephenson, PJ, and Carrie Stengel. 2020. <span>“An Inventory of Biodiversity Data Sources for Conservation Monitoring.”</span> <em>PLoS One</em> 15 (12): e0242923.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -155,18 +240,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -198,7 +272,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -206,7 +302,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
