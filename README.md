@@ -1,3 +1,3 @@
 # WildTrax: an open platform for the management, storage, processing, sharing and discovery of avian data
 
-
+As environmental sensors become essential tools for monitoring and assessing bird population trends, their effective use relies on robust systems to manage the large datasets they generate. WildTrax (https://www.wildtrax.ca) is a web-based platform designed to manage, store, process, share, and discover environmental sensor data across local to international scales. By enabling researchers to address ecological questions ranging from fine to broad scales through novel analytical approaches, WildTrax strengthens the avian data network, fosters collaboration, and enhances data sharing to support bird conservation efforts in Canada.
