@@ -80,6 +80,8 @@ Publishing
 
 ## Data management and processing
 
+The database schema is highly flexible and generalizable, allowing researchers to manage data from diverse sensor types and ecological projects while facilitating data sharing and integration when appropriate. At the core of WildTrax’s design are environmental sensors and their associated metadata. The system supports multiple sensor types and configurations, efficiently linking sensor data to sensor deployment details. This structure allows seamless tracking of data through multiple stages of collection and processing. Data entities are managed both as inputs and outputs throughout the workflow, enabling users to access data at various processing stages. WildTrax centers its database architecture around sensor deployments and their recordings, including key metadata such as deployment location (site name, coordinates, elevation), study area information (project name, organization, time zone), and sensor configurations. This architecture supports the comprehensive capture of acoustic, camera, and environmental sensor data within one unified system.
+
 ### Acoustic sensor
 
 ```{r}
@@ -129,7 +131,20 @@ map_only |>
 
 ```
 
-### Camera sensor
+#### Species verification
+
+WildTrax provides an integrated interface for developing, testing, and applying automated species identification models based on machine learning algorithms, including Hidden Markov Models (HMMs) and other classifiers.
+
+The interface comprises four primary components:
+
+* Visualizer – Allows users to view, listen to, and annotate acoustic and image data. It supports multiple data formats and devices, with tools for zooming, filtering, and navigating recordings.
+
+* Species Validation – Enables users to label species presence or absence in recordings, creating validation datasets to assess model accuracy. This module also allows review and correction of ROIs generated automatically.
+
+
+
+
+### Camera sensors
 
 Camera users can therefore upload, process their image sets with AI, tag the remaining detail, conduct species verification
 
@@ -164,6 +179,28 @@ In summary, increasingly public datasets will help improve modelling and biologi
 # Discussion
 
 WildTrax will continue to be a leading force in shaping our environmental sensors use and distribute their data at global scale. 
+
+# Additional Information and Declarations
+
+## Competing Interests
+
+The authors declare no competing interests.
+
+## Author Contributions
+
+Alexander G. MacPhail conceived and designed the manuscript, coordinated acoustic data collection and processing using WildTrax, performed data analysis, and drafted the manuscript. He played a key principal role in the acoustic sensor design and development.
+
+Erin M. Bayne contributed to study design as the lead scientific developer, provided overall scientific guidance, and assisted with manuscript revision.
+
+Corrina Copp supported platform development and data management, with a particular focus on camera sensor design and development, and contributed to manuscript editing.
+
+Michael Packer served as lead developer, overseeing server architecture, back-end development, system scalability, and ensuring robust data processing workflows.
+
+Chad Klassen designed the user interface, provided front-end development, and led user experience design to optimize accessibility and usability across devices.
+
+Elly Knight - 
+
+Kevin Kelly - 
 
 # Acknowledgements
 
