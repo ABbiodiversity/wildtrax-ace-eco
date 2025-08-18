@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-08-01">
+<meta name="dcterms.date" content="2025-08-18">
 
-<title>WildTrax: an open platform for the management, storage, processing, sharing and discovery of avian data</title>
+<title>WildTrax: a platform for the management, storage, processing, sharing and discovery of avian data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,6 +54,9 @@ div.csl-indent {
 <script src="wildtrax-ace-eco_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="wildtrax-ace-eco_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="wildtrax-ace-eco_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="wildtrax-ace-eco_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="wildtrax-ace-eco_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="wildtrax-ace-eco_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 
 
 </head>
@@ -71,29 +74,37 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#birds-as-ecological-indicators" id="toc-birds-as-ecological-indicators" class="nav-link" data-scroll-target="#birds-as-ecological-indicators">Birds as ecological indicators</a></li>
   <li><a href="#environmental-sensors-and-big-data" id="toc-environmental-sensors-and-big-data" class="nav-link" data-scroll-target="#environmental-sensors-and-big-data">Environmental sensors and big data</a></li>
-  <li><a href="#collaborative-data-makes-collaborative-action" id="toc-collaborative-data-makes-collaborative-action" class="nav-link" data-scroll-target="#collaborative-data-makes-collaborative-action">Collaborative data makes collaborative action</a></li>
+  <li><a href="#open-avian-data" id="toc-open-avian-data" class="nav-link" data-scroll-target="#open-avian-data">Open avian data</a></li>
   </ul></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
   <ul class="collapse">
-  <li><a href="#database-infrastructure-and-design" id="toc-database-infrastructure-and-design" class="nav-link" data-scroll-target="#database-infrastructure-and-design">Database infrastructure and design</a></li>
-  <li><a href="#front-end" id="toc-front-end" class="nav-link" data-scroll-target="#front-end">Front-end</a></li>
-  <li><a href="#data-privacy-permissions-and-publication" id="toc-data-privacy-permissions-and-publication" class="nav-link" data-scroll-target="#data-privacy-permissions-and-publication">Data privacy, permissions and publication</a></li>
+  <li><a href="#database" id="toc-database" class="nav-link" data-scroll-target="#database">Database</a>
+  <ul class="collapse">
+  <li><a href="#infrastructure" id="toc-infrastructure" class="nav-link" data-scroll-target="#infrastructure">Infrastructure</a></li>
+  <li><a href="#schemas" id="toc-schemas" class="nav-link" data-scroll-target="#schemas">Schemas</a></li>
+  </ul></li>
+  <li><a href="#front-end" id="toc-front-end" class="nav-link" data-scroll-target="#front-end">Front-end</a>
+  <ul class="collapse">
+  <li><a href="#user-interface-ui-user-experience-ux-and-content-management-system-cms" id="toc-user-interface-ui-user-experience-ux-and-content-management-system-cms" class="nav-link" data-scroll-target="#user-interface-ui-user-experience-ux-and-content-management-system-cms">User interface (UI), user experience (UX) and content management system (CMS)</a></li>
+  </ul></li>
   <li><a href="#data-management-and-processing" id="toc-data-management-and-processing" class="nav-link" data-scroll-target="#data-management-and-processing">Data management and processing</a>
   <ul class="collapse">
   <li><a href="#acoustic-sensor" id="toc-acoustic-sensor" class="nav-link" data-scroll-target="#acoustic-sensor">Acoustic sensor</a></li>
   <li><a href="#camera-sensor" id="toc-camera-sensor" class="nav-link" data-scroll-target="#camera-sensor">Camera sensor</a></li>
-  <li><a href="#point-counts" id="toc-point-counts" class="nav-link" data-scroll-target="#point-counts">Point counts</a></li>
+  <li><a href="#avian-point-counts" id="toc-avian-point-counts" class="nav-link" data-scroll-target="#avian-point-counts">Avian point counts</a></li>
   </ul></li>
-  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
+  <li><a href="#data-publication-sharing-and-discovery" id="toc-data-publication-sharing-and-discovery" class="nav-link" data-scroll-target="#data-publication-sharing-and-discovery">Data publication, sharing and discovery</a></li>
   </ul></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
   <ul class="collapse">
-  <li><a href="#multiple-observers" id="toc-multiple-observers" class="nav-link" data-scroll-target="#multiple-observers">Multiple observers</a></li>
-  <li><a href="#covariates" id="toc-covariates" class="nav-link" data-scroll-target="#covariates">Covariates</a></li>
-  <li><a href="#artificial-intelligence-and-automated-classification" id="toc-artificial-intelligence-and-automated-classification" class="nav-link" data-scroll-target="#artificial-intelligence-and-automated-classification">Artificial intelligence and automated classification</a></li>
-  <li><a href="#impact-of-privacy-constrained-data-on-biological-metrics" id="toc-impact-of-privacy-constrained-data-on-biological-metrics" class="nav-link" data-scroll-target="#impact-of-privacy-constrained-data-on-biological-metrics">Impact of privacy-constrained data on biological metrics</a></li>
+  <li><a href="#growth-and-community" id="toc-growth-and-community" class="nav-link" data-scroll-target="#growth-and-community">Growth and community</a></li>
   </ul></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#additional-information-and-declarations" id="toc-additional-information-and-declarations" class="nav-link" data-scroll-target="#additional-information-and-declarations">Additional Information and Declarations</a>
+  <ul class="collapse">
+  <li><a href="#competing-interests" id="toc-competing-interests" class="nav-link" data-scroll-target="#competing-interests">Competing Interests</a></li>
+  <li><a href="#author-contributions" id="toc-author-contributions" class="nav-link" data-scroll-target="#author-contributions">Author Contributions</a></li>
+  </ul></li>
   <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
   </ul>
 </nav>
@@ -104,18 +115,36 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">WildTrax: an open platform for the management, storage, processing, sharing and discovery of avian data</h1>
+<h1 class="title">WildTrax: a platform for the management, storage, processing, sharing and discovery of avian data</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Alexander G. MacPhail </p>
+             <p>Corrina Copp </p>
+             <p>Erin M. Bayne </p>
+             <p>Michael Packer </p>
+             <p>Chad Klassen </p>
+             <p>Elly C. Knight </p>
+             <p>Steven L. Van Wilgenburg </p>
+             <p>Kevin G. Kelly </p>
+             <p>Joan Fang </p>
+             <p>Monica Kohler </p>
+             <p>Tara Narwani </p>
+             <p>Hedwig E. Lankau </p>
+             <p>Charles M. Francis </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 1, 2025</p>
+      <p class="date">August 18, 2025</p>
     </div>
   </div>
   
@@ -127,99 +156,202 @@ div.csl-indent {
 </header>
 
 
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="assets/data-discover.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="assets/data-discover.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="float:left; border:1px solid #ccc; padding:4px;" alt="Data Discover"></a></p>
+</figure>
+</div>
 <section id="abstract" class="level1">
 <h1>Abstract</h1>
-<p>As environmental sensors become essential tools for monitoring and assessing bird population trends, their effective use relies on robust systems to manage the large datasets they generate. WildTrax (https://www.wildtrax.ca) is a web-based platform designed to manage, store, process, share, and discover environmental sensor data across local to international scales. By enabling researchers to address ecological questions ranging from fine to broad scales through novel analytical approaches, WildTrax strengthens the avian data network, fosters collaboration, and enhances data sharing to support bird conservation efforts in Canada.</p>
+<p>As environmental sensors become essential tools for monitoring and assessing bird population trends, their effective use relies on robust systems to manage the large, and sometimes overwhelming, datasets they generate. WildTrax (https://www.wildtrax.ca) is a web-based platform designed to manage, store, process, share, and discover environmental sensor data across local to international extents. By creating, developing and mainting this software, WildTrax enables researchers to address ecological questions at multiple spatial and temporal scales through novel analytical approaches, strengthening the avian data network, fostering collaboration, and enhancing data sharing to support bird conservation across Canada and beyond.</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Highlights</strong></p>
+<ul>
+<li>Environmental sensor data generate large and complex datasets, requiring structured systems for harmonization, quality control, and integration across studies.</li>
+<li>WildTrax provides a framework for storing, managing, processing, sharing, and discovering ecological data, enabling broader accessibility and reproducibility.</li>
+<li>Analytical pipelines, including thoughtfully applied artificial intelligence tools, can enhance data interpretation while maintaining transparency and user control.</li>
+<li>Continued development of integrated data platforms fosters opportunities for researchers to synthesize diverse datasets, advancing both ecological understanding and conservation practice.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Keywords:</strong><br>
+Environmental sensors, bird population monitoring, data management, online platform, ecological data sharing, multi-scale analysis, conservation technology</p>
+</div>
+</div>
+</div>
 </section>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <section id="birds-as-ecological-indicators" class="level2">
 <h2 class="anchored" data-anchor-id="birds-as-ecological-indicators">Birds as ecological indicators</h2>
-<p>Birds have long been recognized as reliable ecological indicators due to their sensitivity to environmental changes, broad distribution across ecosystems, and measurable population dynamics. They can signal shifts in ecosystem health, function, and biodiversity, providing critical insights for conservation and management. Birds are also valuable indicators because they occupy diverse niches, have well-studied life histories, and often correlate with the health of other taxa (<span class="citation" data-cites="fleishman2005using">Fleishman et al. (<a href="#ref-fleishman2005using" role="doc-biblioref">2005</a>)</span>). Their utility spans ecosystem monitoring, habitat quality assessment, and gauging the impact of environmental stressors such as land use change, climate change, and pollution (<span class="citation" data-cites="niemi1997critical">Niemi et al. (<a href="#ref-niemi1997critical" role="doc-biblioref">1997</a>)</span>, <span class="citation" data-cites="mekonen2017birds">Mekonen (<a href="#ref-mekonen2017birds" role="doc-biblioref">2017</a>)</span>). Advances in statistical modeling now allow for better integration of uncertainty, phylogenetic relationships, and temporal autocorrelation, enhancing the reliability of bird-based indicators (<span class="citation" data-cites="fraixedas2020state">Fraixedas et al. (<a href="#ref-fraixedas2020state" role="doc-biblioref">2020</a>)</span>). However, there remains challenges in their application as indicators, including spatial, seasonal, and habitat biases, as well as insufficient consideration of statistical uncertainty and temporal autocorrelation in multi-species bird indicators (<span class="citation" data-cites="gregory2003using">Gregory et al. (<a href="#ref-gregory2003using" role="doc-biblioref">2003</a>)</span>, <span class="citation" data-cites="fraixedas2020state">Fraixedas et al. (<a href="#ref-fraixedas2020state" role="doc-biblioref">2020</a>)</span>). Addressing these gaps is crucial for improving their efficacy in informing Canada’s commitments under the Global Biodiversity Framework.</p>
-<p>Avian surveys rely on skilled observers to accurately identify and count birds by sight or sound. Point count surveys incorporate distance and time-interval sampling to adjust for detectability, yielding estimates of population size or density critical for conservation decisions (<span class="citation" data-cites="gregory2003using">Gregory et al. (<a href="#ref-gregory2003using" role="doc-biblioref">2003</a>)</span>; <span class="citation" data-cites="fraixedas2020state">Fraixedas et al. (<a href="#ref-fraixedas2020state" role="doc-biblioref">2020</a>)</span>; <span class="citation" data-cites="mekonen2017birds">Mekonen (<a href="#ref-mekonen2017birds" role="doc-biblioref">2017</a>)</span>; <span class="citation" data-cites="niemi1997critical">Niemi et al. (<a href="#ref-niemi1997critical" role="doc-biblioref">1997</a>)</span>; <span class="citation" data-cites="fleishman2005using">Fleishman et al. (<a href="#ref-fleishman2005using" role="doc-biblioref">2005</a>)</span>; <span class="citation" data-cites="quinn2011application">Quinn et al. (<a href="#ref-quinn2011application" role="doc-biblioref">2011</a>)</span>; <span class="citation" data-cites="bock1984birds">Bock and Webb (<a href="#ref-bock1984birds" role="doc-biblioref">1984</a>)</span>). However, observer bias and error remain persistent issues in multi-observer programs (<span class="citation" data-cites="faamesbystrark1981">(<a href="#ref-faamesbystrark1981" role="doc-biblioref"><strong>faamesbystrark1981?</strong></a>)</span>; <span class="citation" data-cites="keplerscott1981">(<a href="#ref-keplerscott1981" role="doc-biblioref"><strong>keplerscott1981?</strong></a>)</span>). While many programs mitigate this through standardized methods and experienced observers, long-term datasets like the Breeding Bird Survey (BBS) rarely account for within-observer error beyond first-year learning effects (<span class="citation" data-cites="kendall1996">(<a href="#ref-kendall1996" role="doc-biblioref"><strong>kendall1996?</strong></a>)</span>; <span class="citation" data-cites="linkandsauer2004">(<a href="#ref-linkandsauer2004" role="doc-biblioref"><strong>linkandsauer2004?</strong></a>)</span>; <span class="citation" data-cites="farmer2014">(<a href="#ref-farmer2014" role="doc-biblioref"><strong>farmer2014?</strong></a>)</span>).</p>
-<p>The adoption of autonomous recording units (ARUs) has allowed single-visit human surveys to be supplemented or replaced with archived acoustic recordings, enabling “big data” approaches that integrate multiple datasets for broader ecological inference (<span class="citation" data-cites="hampton2013big">Hampton et al. (<a href="#ref-hampton2013big" role="doc-biblioref">2013</a>)</span>; <span class="citation" data-cites="farley2018situating">Farley et al. (<a href="#ref-farley2018situating" role="doc-biblioref">2018</a>)</span>; <span class="citation" data-cites="shin2015ecological">Shin and Choi (<a href="#ref-shin2015ecological" role="doc-biblioref">2015</a>)</span>; <span class="citation" data-cites="nathan2022big">Nathan et al. (<a href="#ref-nathan2022big" role="doc-biblioref">2022</a>)</span>; <span class="citation" data-cites="peters2014harnessing">Peters et al. (<a href="#ref-peters2014harnessing" role="doc-biblioref">2014</a>)</span>; <span class="citation" data-cites="hallgren2016biodiversity">Hallgren et al. (<a href="#ref-hallgren2016biodiversity" role="doc-biblioref">2016</a>)</span>). Detection rates depend on factors such as distance, frequency range, and habitat (<span class="citation" data-cites="yip2017">(<a href="#ref-yip2017" role="doc-biblioref"><strong>yip2017?</strong></a>)</span>). ARUs improve data quality through permanent records and reproducible analyses, supporting integration with traditional datasets and advancing broader conservation goals (<span class="citation" data-cites="fox2017generating">Fox et al. (<a href="#ref-fox2017generating" role="doc-biblioref">2017</a>)</span>; <span class="citation" data-cites="stephenson2020inventory">Stephenson and Stengel (<a href="#ref-stephenson2020inventory" role="doc-biblioref">2020</a>)</span>; <span class="citation" data-cites="buxton2021key">Buxton et al. (<a href="#ref-buxton2021key" role="doc-biblioref">2021</a>)</span>).</p>
-<p>Both human observers and machine learning classifiers introduce detection errors, including false positives (FP) and false negatives (FN), which can skew population inferences, particularly for rare species (<span class="citation" data-cites="campbellfrancis2011">(<a href="#ref-campbellfrancis2011" role="doc-biblioref"><strong>campbellfrancis2011?</strong></a>)</span>; <span class="citation" data-cites="miller2015">(<a href="#ref-miller2015" role="doc-biblioref"><strong>miller2015?</strong></a>)</span>; <span class="citation" data-cites="clement2022">(<a href="#ref-clement2022" role="doc-biblioref"><strong>clement2022?</strong></a>)</span>). Observer variability in detection and identification further complicates multi-source datasets (<span class="citation" data-cites="gregory2003using">Gregory et al. (<a href="#ref-gregory2003using" role="doc-biblioref">2003</a>)</span>; <span class="citation" data-cites="fraixedas2020state">Fraixedas et al. (<a href="#ref-fraixedas2020state" role="doc-biblioref">2020</a>)</span>). Yet, FP and FN rates are rarely reported, creating the false impression of flawless data. Comparable fields, such as botany, emphasize training and calibration to reduce error (<span class="citation" data-cites="morrison2016">(<a href="#ref-morrison2016" role="doc-biblioref"><strong>morrison2016?</strong></a>)</span>; <span class="citation" data-cites="dennetnielsen2019">(<a href="#ref-dennetnielsen2019" role="doc-biblioref"><strong>dennetnielsen2019?</strong></a>)</span>), but these approaches are challenging to implement for mobile taxa like birds. Re-reviewing acoustic data offers a means to assess and correct error (<span class="citation" data-cites="golding2016">(<a href="#ref-golding2016" role="doc-biblioref"><strong>golding2016?</strong></a>)</span>; <span class="citation" data-cites="rempel2019">(<a href="#ref-rempel2019" role="doc-biblioref"><strong>rempel2019?</strong></a>)</span>). Additionally, the integration of diverse knowledge systems, including Indigenous Knowledge, can strengthen monitoring and error assessment efforts (<span class="citation" data-cites="jessen2022contributions">Jessen et al. (<a href="#ref-jessen2022contributions" role="doc-biblioref">2022</a>)</span>; <span class="citation" data-cites="lamb2023braiding">Lamb et al. (<a href="#ref-lamb2023braiding" role="doc-biblioref">2023</a>)</span>)</p>
+<p>Birds have long been recognized as ecological indicators (<span class="citation" data-cites="temple1989bird">Temple and Wiens (<a href="#ref-temple1989bird" role="doc-biblioref">1989</a>)</span>, <span class="citation" data-cites="bibby1999making">Bibby (<a href="#ref-bibby1999making" role="doc-biblioref">1999</a>)</span>, <span class="citation" data-cites="canterbury2000bird">Canterbury et al. (<a href="#ref-canterbury2000bird" role="doc-biblioref">2000</a>)</span>, <span class="citation" data-cites="gregory2003using">Gregory et al. (<a href="#ref-gregory2003using" role="doc-biblioref">2003</a>)</span>, <span class="citation" data-cites="mekonen2017birds">Mekonen (<a href="#ref-mekonen2017birds" role="doc-biblioref">2017</a>)</span>) due to their sensitivity to environmental changes (<span class="citation" data-cites="furness2013birds">Furness and Greenwood (<a href="#ref-furness2013birds" role="doc-biblioref">2013</a>)</span>), broad distribution across ecosystems (<span class="citation" data-cites="orme2006global">Orme et al. (<a href="#ref-orme2006global" role="doc-biblioref">2006</a>)</span>, <span class="citation" data-cites="jetz2012global">Jetz et al. (<a href="#ref-jetz2012global" role="doc-biblioref">2012</a>)</span>, <span class="citation" data-cites="aide2013real">Aide et al. (<a href="#ref-aide2013real" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="lepage2014avibase">Lepage, Vaidya, and Guralnick (<a href="#ref-lepage2014avibase" role="doc-biblioref">2014</a>)</span>), and measurable population dynamics (<span class="citation" data-cites="reif2013long">Reif (<a href="#ref-reif2013long" role="doc-biblioref">2013</a>)</span>). They can signal shifts in ecosystem health (<span class="citation" data-cites="zakaria2005comparison">Zakaria, Leong, and Yusuf (<a href="#ref-zakaria2005comparison" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="newman2007aquatic">Newman et al. (<a href="#ref-newman2007aquatic" role="doc-biblioref">2007</a>)</span>, <span class="citation" data-cites="smits2013avian">Smits and Fernie (<a href="#ref-smits2013avian" role="doc-biblioref">2013</a>)</span>) and function (<span class="citation" data-cites="sekercioglu2012bird">Sekercioglu (<a href="#ref-sekercioglu2012bird" role="doc-biblioref">2012</a>)</span>, <span class="citation" data-cites="sitters2016bird">Sitters et al. (<a href="#ref-sitters2016bird" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="morante2017appraisal">Morante-Filho and Faria (<a href="#ref-morante2017appraisal" role="doc-biblioref">2017</a>)</span>), providing integral metrics (<span class="citation" data-cites="stanton2016flexible">Stanton et al. (<a href="#ref-stanton2016flexible" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="michel2020metrics">Michel et al. (<a href="#ref-michel2020metrics" role="doc-biblioref">2020</a>)</span>) for conservation and management. Birds are also valuable indicators because they occupy diverse niches, have well-studied life histories, and often correlate with the health of other taxa (<span class="citation" data-cites="fleishman2005using">Fleishman et al. (<a href="#ref-fleishman2005using" role="doc-biblioref">2005</a>)</span>). Their utility spans ecosystem monitoring, habitat quality assessment, and gauging the impact of environmental stressors such as land use change, climate change (<span class="citation" data-cites="jiguet2007climate">Jiguet et al. (<a href="#ref-jiguet2007climate" role="doc-biblioref">2007</a>)</span>), and pollution (<span class="citation" data-cites="niemi1997critical">Niemi et al. (<a href="#ref-niemi1997critical" role="doc-biblioref">1997</a>)</span>, <span class="citation" data-cites="mekonen2017birds">Mekonen (<a href="#ref-mekonen2017birds" role="doc-biblioref">2017</a>)</span>). Advances in statistical modelling now allow for better integration of uncertainty, phylogenetic relationships, and temporal autocorrelation, enhancing the reliability of bird-based indicators (<span class="citation" data-cites="fraixedas2020state">Fraixedas et al. (<a href="#ref-fraixedas2020state" role="doc-biblioref">2020</a>)</span>). However, there remains challenges in their application as indicators, including spatial, seasonal, and habitat biases, as well as insufficient consideration of statistical uncertainty and temporal autocorrelation in multi-species bird indicators (<span class="citation" data-cites="gregory2003using">Gregory et al. (<a href="#ref-gregory2003using" role="doc-biblioref">2003</a>)</span>, <span class="citation" data-cites="fraixedas2020state">Fraixedas et al. (<a href="#ref-fraixedas2020state" role="doc-biblioref">2020</a>)</span>).</p>
 </section>
 <section id="environmental-sensors-and-big-data" class="level2">
 <h2 class="anchored" data-anchor-id="environmental-sensors-and-big-data">Environmental sensors and big data</h2>
-<p>Environmental sensors, such as autonomous recording units (ARUs) and remote camera traps, are reshaping avian monitoring by providing continuous, high-resolution, and large-scale data collection. These technologies mitigate many of the limitations inherent in traditional field surveys, offering reliable, replicable, and non-invasive methods for monitoring bird populations and their habitats, while providing a permanent record of the environment. ARUs are particularly effective for capturing vocalizations, enabling detailed identification and temporal analysis of species presence, abundance, and community dynamics over time (<span class="citation" data-cites="bock1984birds">Bock and Webb (<a href="#ref-bock1984birds" role="doc-biblioref">1984</a>)</span>). In an era where ecological science increasingly overlaps with the data-driven revolution, the integration of such sensors contributes to the accumulation of extensive datasets, often categorized as “big data” (<span class="citation" data-cites="hampton2013big">Hampton et al. (<a href="#ref-hampton2013big" role="doc-biblioref">2013</a>)</span>). These datasets, characterized by their volume, variety, veracity, and velocity, frequently exceed the capacities of traditional tools and demand innovative approaches for analysis (<span class="citation" data-cites="farley2018situating">Farley et al. (<a href="#ref-farley2018situating" role="doc-biblioref">2018</a>)</span>). Software applications and platforms exemplify the potential of centralized systems to standardize, integrate, and share these data, fostering interdisciplinary collaborations and enabling comprehensive insights into avian biodiversity patterns. The transformative power of environmental sensors lies in their ability to address biases and gaps in conventional monitoring while enabling advanced modeling techniques that incorporate temporal autocorrelation, spatial heterogeneity, and even phylogenetic relationships among species (<span class="citation" data-cites="peters2014harnessing">Peters et al. (<a href="#ref-peters2014harnessing" role="doc-biblioref">2014</a>)</span>). As the demand for scalable and timely ecological insights grows, so do the challenges of big data systems. Ensuring data quality, equitable access, and long-term preservation requires robust socio-technical frameworks, as emphasized by <span class="citation" data-cites="shin2015ecological">Shin and Choi (<a href="#ref-shin2015ecological" role="doc-biblioref">2015</a>)</span>. More recently, the computational demands of analyzing these large datasets has been interplexed with machine learning techniques and traditional ecological models. By integrating diverse datasets and harnessing the opportunities presented by big data, environmental sensors are poised to bridge the gap between raw ecological data and actionable conservation strategies. These tools not only enhance our ability to monitor and manage ecosystems but also contribute to the broader goal of ensuring ecological sustainability in an increasingly data-driven world (<span class="citation" data-cites="nathan2022big">Nathan et al. (<a href="#ref-nathan2022big" role="doc-biblioref">2022</a>)</span>).</p>
+<p>Environmental sensors, such as autonomous recording units (ARUs) and remote camera traps, are reshaping avian monitoring by providing continuous, high-resolution, and large-scale data collection (<span class="citation" data-cites="hobson2002acoustic">Hobson et al. (<a href="#ref-hobson2002acoustic" role="doc-biblioref">2002</a>)</span>, <span class="citation" data-cites="shonfield2017autonomous">Shonfield and Bayne (<a href="#ref-shonfield2017autonomous" role="doc-biblioref">2017</a>)</span>, <span class="citation" data-cites="pollet2025technological">Pollet et al. (<a href="#ref-pollet2025technological" role="doc-biblioref">2025</a>)</span>). The adoption of ARUs has allowed single-visit human surveys to be supplemented or replaced with archived acoustic recordings, enabling “big data” approaches that integrate multiple datasets for broader ecological inference (<span class="citation" data-cites="hampton2013big">Hampton et al. (<a href="#ref-hampton2013big" role="doc-biblioref">2013</a>)</span>; <span class="citation" data-cites="farley2018situating">Farley et al. (<a href="#ref-farley2018situating" role="doc-biblioref">2018</a>)</span>; <span class="citation" data-cites="shin2015ecological">Shin and Choi (<a href="#ref-shin2015ecological" role="doc-biblioref">2015</a>)</span>; <span class="citation" data-cites="nathan2022big">Nathan et al. (<a href="#ref-nathan2022big" role="doc-biblioref">2022</a>)</span>; <span class="citation" data-cites="peters2014harnessing">Peters et al. (<a href="#ref-peters2014harnessing" role="doc-biblioref">2014</a>)</span>; <span class="citation" data-cites="hallgren2016biodiversity">Hallgren et al. (<a href="#ref-hallgren2016biodiversity" role="doc-biblioref">2016</a>)</span>) while still being statistical harmonized across methodologies (<span class="citation" data-cites="solymos2013calibrating">Sólymos et al. (<a href="#ref-solymos2013calibrating" role="doc-biblioref">2013</a>)</span>) with detectability rates depend on factors such as distance from the ARU, frequency range, and habitat structure (<span class="citation" data-cites="yip2017experimentally">Yip et al. (<a href="#ref-yip2017experimentally" role="doc-biblioref">2017</a>)</span>). Remote camera traps have likewise become valuable tools for avian research, particularly for documenting nesting behavior, predation events, and species presence in otherwise inaccessible habitats (<span class="citation" data-cites="bolton2007remote">Bolton et al. (<a href="#ref-bolton2007remote" role="doc-biblioref">2007</a>)</span>; <span class="citation" data-cites="randler2018distance">Randler and Kalb (<a href="#ref-randler2018distance" role="doc-biblioref">2018</a>)</span>; <span class="citation" data-cites="o2008picture">O’Brien and Kinnaird (<a href="#ref-o2008picture" role="doc-biblioref">2008</a>)</span>). When deployed alongside ARUs, cameras provide complementary visual evidence that strengthens ecological inference, highlighting the advantages of multimodal sensor programs (<span class="citation" data-cites="buxton2018pairing">Buxton et al. (<a href="#ref-buxton2018pairing" role="doc-biblioref">2018</a>)</span>; <span class="citation" data-cites="garland2020acoustic">Garland et al. (<a href="#ref-garland2020acoustic" role="doc-biblioref">2020</a>)</span>). Both sensors generate large ecological media datasets, often characterized as ‘big data’ due to their volume, variety (e.g., different file types), veracity (uncertainty in data quality such as noise or misclassification), and velocity (rate of accumulation or acquistion, <span class="citation" data-cites="hampton2013big">Hampton et al. (<a href="#ref-hampton2013big" role="doc-biblioref">2013</a>)</span>; <span class="citation" data-cites="farley2018situating">Farley et al. (<a href="#ref-farley2018situating" role="doc-biblioref">2018</a>)</span>). Centralized software platforms facilitate standardization, integration, and sharing of these data, enabling interdisciplinary collaboration and advancing biodiversity research, and helping to reduce bias (<span class="citation" data-cites="peters2014harnessing">Peters et al. (<a href="#ref-peters2014harnessing" role="doc-biblioref">2014</a>)</span>). Notably, machine learning is being combined with ecological models to meet computational demands, positioning sensors and big data systems to link raw ecological observations with actionable conservation strategies and sustainability goals (<span class="citation" data-cites="nathan2022big">Nathan et al. (<a href="#ref-nathan2022big" role="doc-biblioref">2022</a>)</span>) and minimizing data waste (<span class="citation" data-cites="binley2023minimizing">Binley et al. (<a href="#ref-binley2023minimizing" role="doc-biblioref">2023</a>)</span>).</p>
 </section>
-<section id="collaborative-data-makes-collaborative-action" class="level2">
-<h2 class="anchored" data-anchor-id="collaborative-data-makes-collaborative-action">Collaborative data makes collaborative action</h2>
-<p>Effectively leveraging birds as ecological indicators hinges on robust, collaborative, and accessible data management frameworks; this plays a pivotal role in this landscape by integrating environmental sensor data into a centralized system that bridges gaps across disciplines and scales. Software platforms that enable researchers and decision-makers to harmonize diverse datasets while ensuring consistency and quality in biodiversity monitoring efforts (<span class="citation" data-cites="stephenson2020inventory">Stephenson and Stengel (<a href="#ref-stephenson2020inventory" role="doc-biblioref">2020</a>)</span>). They can support advanced analyses for species- and community-level assessments, transforming raw environmental data into actionable insights that inform conservation strategies and policy development (<span class="citation" data-cites="fox2017generating">Fox et al. (<a href="#ref-fox2017generating" role="doc-biblioref">2017</a>)</span>). By addressing limitations in traditional methodologies and promoting data-sharing initiatives, open platforms contribute to a more cohesive understanding of ecological trends (<span class="citation" data-cites="buxton2021key">Buxton et al. (<a href="#ref-buxton2021key" role="doc-biblioref">2021</a>)</span>). Moreover, such systems foster collaboration among stakeholders, helping to align conservation priorities at regional, national, and even global scales (<span class="citation" data-cites="kartez2008information">Kartez and Casto (<a href="#ref-kartez2008information" role="doc-biblioref">2008</a>)</span>).</p>
-<p>Here we present WildTrax, a platform for the storage, management, processing, sharing and discovery of environmental sensor data. Here we show examples of the WildTrax framework in action and . We also present ways to guide users on how WildTrax provides a standardized approach to quantifying and correcting FP, FN, and true negatives (TN) in avian datasets by enabling ARU data to be reviewed by multiple observers. We measure the extent of identification error and simulate its impacts on population estimates. Here, we offer a workflow for managing observer variability in ARU-based monitoring programs and outline the tools that WildTrax provides to support this process.</p>
+<section id="open-avian-data" class="level2">
+<h2 class="anchored" data-anchor-id="open-avian-data">Open avian data</h2>
+<p>To maximize their utility in an open framework, biodiversity data must align with FAIR principles: findable, accessible, interoperable, and reusable (<span class="citation" data-cites="kush2020fair">Kush et al. (<a href="#ref-kush2020fair" role="doc-biblioref">2020</a>)</span>). However, challenges persist around data quality, equitable access, and long-term preservation, highlighting the importance of strong and lasting socio-technical frameworks (<span class="citation" data-cites="shin2015ecological">Shin and Choi (<a href="#ref-shin2015ecological" role="doc-biblioref">2015</a>)</span>). Software platforms that implement these principles and harmonize diverse datasets while maintaining consistency, equity, and quality can unlock advanced species- and community-level analyses, ultimately transforming raw observations into actionable insights for conservation and policy (<span class="citation" data-cites="stephenson2020inventory">Stephenson and Stengel (<a href="#ref-stephenson2020inventory" role="doc-biblioref">2020</a>)</span>; <span class="citation" data-cites="fox2017generating">Fox et al. (<a href="#ref-fox2017generating" role="doc-biblioref">2017</a>)</span>). By overcoming limitations of traditional methods and promoting open data-sharing, such platforms enhance understanding of ecological trends (<span class="citation" data-cites="buxton2021key">Buxton et al. (<a href="#ref-buxton2021key" role="doc-biblioref">2021</a>)</span>) and foster collaboration among stakeholders, aligning priorities across regional to global scales (<span class="citation" data-cites="kartez2008information">Kartez and Casto (<a href="#ref-kartez2008information" role="doc-biblioref">2008</a>)</span>). Here we introduce WildTrax, a platform for storing, managing, processing, sharing, and discovering avian environmental sensor data. This paper describes version 2.0 of WildTrax, corresponding with its 2025 release.</p>
 </section>
 </section>
 <section id="methods" class="level1">
 <h1>Methods</h1>
-<section id="database-infrastructure-and-design" class="level2">
-<h2 class="anchored" data-anchor-id="database-infrastructure-and-design">Database infrastructure and design</h2>
-<p>WildTrax operates on PostgreSQL, a free and open-source relational database management system (version [insert version]) as its primary back-end. Postgres ensures optimized data and storage and management of complex biological data sets, including those metadata-rich records from media collected by ARUs and remote cameras. The application infrastructure is hosted on a virtualized server environment managed through…. The core system is distributed across virtual machines (VMs), each configured for specific roles, including application servers, database servers, and background processing nodes. These VMs are provisioned with specifications to support both daily user interactions and computationally intensive batch processes, such as audio and image file uploading and the execution of machine learning algorithms. Load balancing and redundancy measures are implemented to ensure platform availability, performance, and scalability. WildTrax supports standardized data schemas for biological monitoring, including autonomous recording units (ARUs), cameras, and point counts. This enables interoperability with external data repositories and analysis tools, such as machine learning workflows and environmental datasets (e.g., weather data). Media collected by environmental sensors are always linked hierarchically to their deployment location: the physical, geographic point defined by the ARU or camera. Sensors cannot exist independently of this parent location information. The live server is accessible at the University of Alberta, Edmonton, Canada, with optional storage services available on AWS S3 (https://aws.amazon.com/s3/storage-classes/glacier/). Back-ups are provided through AWS Deep Glacier.</p>
+<section id="database" class="level2">
+<h2 class="anchored" data-anchor-id="database">Database</h2>
+<section id="infrastructure" class="level3">
+<h3 class="anchored" data-anchor-id="infrastructure">Infrastructure</h3>
+<p>WildTrax uses PostgreSQL, a free and open-source relational database management system (RDBMS). PostgreSQL is well-suited for managing complex biodiversity datasets and rich metadata that accompanies ARU and remote camera data, offering optimized querying, relational structure, and robust storage capabilities (<span class="citation" data-cites="douglas2003postgresql">Douglas and Douglas (<a href="#ref-douglas2003postgresql" role="doc-biblioref">2003</a>)</span>; <span class="citation" data-cites="zhang2009efficiently">Zhang, Gertz, and Gruenwald (<a href="#ref-zhang2009efficiently" role="doc-biblioref">2009</a>)</span>; <span class="citation" data-cites="kim2021ecobank">Kim et al. (<a href="#ref-kim2021ecobank" role="doc-biblioref">2021</a>)</span>). The application infrastructure runs on a virtualized server environment configured for dedicated applications. This architecture supports both daily user interactions and more computationally intensive batch tasks, such as uploading large volumes of audio and image files or running artificial intelligence models for species recognition. To ensure reliability and performance at scale, the system employs load balancing and redundancy measures, enabling near-continuous availability for a large and growing user base. The production server is hosted at the University of Alberta (Edmonton, Canada), with optional long-term storage services available both at the University of Alberta server or through Amazon Web Services (AWS) with nodes available in Montreal and Oregon. Archival off-site storage uses <a href="https://aws.amazon.com/s3/storage-classes/glacier/">AWS Deep Glacier</a> providing a recommended 3-2-1 data backup policy (<span class="citation" data-cites="perkel2019ways">Perkel (<a href="#ref-perkel2019ways" role="doc-biblioref">2019</a>)</span>). To optimize performance, a local M.2 drive paired with a CPU significantly reduces I/O bottlenecks, enabling data read / write speeds multiple times faster than traditional SSD NAS configurations. In practice, these enhancements improve query response times and batch processing speeds, while the upgraded CPU delivers smoother responsiveness and improved multitasking during high-demand operations. Media files are meticulously indexed and linked to the stored media depending on the storage location an Organization chooses.</p>
+</section>
+<section id="schemas" class="level3">
+<h3 class="anchored" data-anchor-id="schemas">Schemas</h3>
+<p>WildTrax employs a hierarchically structure to maintain data integrity, enforce standardization, and support interoperability of environmental sensors. The system implements three primary data schemas, ARUs, cameras, and point counts, organized into Projects, which act as centralized containers for all observations and sensor outputs associated with a specific study or research question. Organizations sit above Projects in the hierarchy, aggregating multiple Projects and unifying sensor data and media under a consistent framework.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="assets/aru-projects.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="ARU project dashboard"><img src="assets/aru-projects.png" class="img-fluid figure-img" alt="ARU project dashboard"></a></p>
+<figcaption>ARU project dashboard</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="assets/pc-projects.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Point count project dashboard"><img src="assets/pc-projects.png" class="img-fluid figure-img" alt="Point count project dashboard"></a></p>
+<figcaption>Point count project dashboard</figcaption>
+</figure>
+</div>
+<p>Within this structure, all media are explicitly linked to their parent Location, the precise geographic point of deployment, ensuring that sensors and their outputs are inseparable from their environmental context. The schema enforces referential integrity while also streamlining front-end operations such as data retrieval, filtering, and visualization using optimized queries. Beyond internal consistency, it supports interoperability with external repositories like <a href="https://weatherstack.com/">Weatherstack</a> for historical meteorological records, as well as the integration of machine-learning–based acoustic classifiers such as BirdNET (<span class="citation" data-cites="kahl2021birdnet">Kahl et al. (<a href="#ref-kahl2021birdnet" role="doc-biblioref">2021</a>)</span>) and HawkEars (<span class="citation" data-cites="huus2025hawkears">Huus et al. (<a href="#ref-huus2025hawkears" role="doc-biblioref">2025</a>)</span>). By aligning temporal metadata (<code>YYYY-MM-DD HH:MM:SS</code>) with spatial coordinates (longitude, latitude, WGS84), the framework enables multi-dimensional analyses that connect raw sensor output with ecological, climatic, and biogeographic patterns.</p>
+</section>
 </section>
 <section id="front-end" class="level2">
 <h2 class="anchored" data-anchor-id="front-end">Front-end</h2>
-<p>The front-end is a web-based user interface built using Vuejs (https://vuejs.org/) version 3, designed to provide intuitive access to data management tools, visualization dashboards, and analysis workflows using libraries such as PrimeVue (https://primevue.org/). The front-end Vue3 application is served via an Apache HTTP Server, which also routes API traffic through reverse proxy configurations to back-end services. User authentication and authorization are managed through role-based access control (RBAC) integrated via the Auth0 identity platform (https://auth0.com/). Auth0 supports both email and password authentication and federated identity providers, including Google OAuth, ensuring secure and flexible access pathways for a broad userbase. Access within WildTrax is structured hierarchically to reflect real-world data governance needs. The platform also integrates APIs for data exchange and offers export options in common scientific formats (e.g., CSV, JSON) to support downstream analysis in statistical or GIS software. Media files, such as audio recordings and images, are stored separately from the relational database but are indexed in PostgreSQL for efficient retrieval and linkage to their associated metadata and are stored in a FLAC lossless uncompressed format (<span class="citation" data-cites="macphail2015audio">(<a href="#ref-macphail2015audio" role="doc-biblioref"><strong>macphail2015audio?</strong></a>)</span>) with regular data storage savings of (30-40%).</p>
+<section id="user-interface-ui-user-experience-ux-and-content-management-system-cms" class="level3">
+<h3 class="anchored" data-anchor-id="user-interface-ui-user-experience-ux-and-content-management-system-cms">User interface (UI), user experience (UX) and content management system (CMS)</h3>
+<p>WildTrax’s user interface is a responsive web application built with <a href="https://vuejs.org/,%20version%203">Vuejs</a>, leveraging its modular component-based architecture, including the Composition API, for scalability, maintainability, and efficient logic reuse. The user interface (UI) is styled and enhanced using <a href="https://primevue.org/">PrimeVue</a>, among other libraries, which delivers rich, customizable components such as data tables and dashboards for seamless data exploration and visualization. The application is deployed via an Apache HTTP Server, which serves the front-end and handles API routing through reverse-proxy configurations to back-end services. WildTrax exposes APIs for data exchange and provides export tools in standard scientific formats (e.g., CSV, JSON, text and zip), supporting downstream integration with statistical and geospatial workflows.</p>
+<p>Dashboards are designed to give users a clear, intuitive overview of their sensors’ data, enabling both novice and expert users to navigate and interpret project information with minimal friction. Key features, including filters, sorting, clearly labeled column headers with hover information, and tooltips, are complemented by dropdown menus accessed through responsive, context-aware controls, allowing users to refine or manipulate large datasets quickly without navigating complex database relationship structures.</p>
+<p><img src="assets/aru-upload.png" class="img-fluid"></p>
+<p>Visual elements such as sortable data tables, progress indicators, and status icons support efficient user scanning and pattern recognition, while maintaining consistency with the broader WildTrax design system. Attention to micro-interactions, such as inline feedback and notifications when data are updated or filters applied, reinforces a sense of responsiveness and reduces cognitive user load. The dashboard prioritizes transparency by linking each dataset directly back to its associated location and media, ensuring users can trace results from summary views down to the raw sensor files from Tasks to Organizations.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="assets/context-menu-public.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="ARU context menu for a public project"><img src="assets/context-menu-public.png" class="img-fluid figure-img" alt="ARU context menu for a public project"></a></p>
+<figcaption>ARU context menu for a public project</figcaption>
+</figure>
+</div>
+<p>WildTrax 2.0 incorporates a more content management system (CMS) that provides support for translation (currently supported in English and French), internationalization (i18n), and content localization, ensuring that the platform can accommodate multilingual users and diverse regional requirements.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="assets/cms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Content management system"><img src="assets/cms.png" class="img-fluid figure-img" alt="Content management system"></a></p>
+<figcaption>Content management system</figcaption>
+</figure>
+</div>
 </section>
-<section id="data-privacy-permissions-and-publication" class="level2">
-<h2 class="anchored" data-anchor-id="data-privacy-permissions-and-publication">Data privacy, permissions and publication</h2>
-<p>There are multiple levels of data privacy structure available throughout the system. Users are assigned roles at both the Organization (admin, read-only) and Project (admin, tagger, read-only) levels, enabling fine-grained permissions over data creation, editing, processing and sharing. This structure ensures that sensitive data sets can be securely managed within collaborative environments while maintaining transparency in data provenance and audit trails.</p>
-<p>Publishing</p>
 </section>
 <section id="data-management-and-processing" class="level2">
 <h2 class="anchored" data-anchor-id="data-management-and-processing">Data management and processing</h2>
 <section id="acoustic-sensor" class="level3">
 <h3 class="anchored" data-anchor-id="acoustic-sensor">Acoustic sensor</h3>
+<p>Uploaded recordings supported are WAC and W4V (<a href="https://www.wildlifeacoustics.com/">Wildlife Acoustics</a> proprietary lossless compressed file types), FLAC (open-source lossless compressed file types, https://github.com/xiph/flac), MP3 (lossy compressed audio; (MPEG-1 Audio Layer III)) and WAV (uncompressed audio). Media files, except mp3, are converted to lossless audio codec, FLAC, that preserves bit-for-bit fidelity while reducing storage needs by approximately 50–70% compared to WAV. FLAC also allows researchers to uncompress the lossless data for use in other applications, avoided any issues that arise with lossy data compression (<span class="citation" data-cites="macphail2024audio">MacPhail et al. (<a href="#ref-macphail2024audio" role="doc-biblioref">2024</a>)</span>). Once audio recordings are archived, they are then converted into spectrograms using short-time Fourier transforms (STFT) using the <a href="https://sourceforge.net/projects/sox/">SoX</a>. Default project parameters (X-scale for duration of time and Y-scale for spectrogram height in pixels) define the size of the spectrogram but that can changed to modify the dimensions and range of the spectral signatures in order to isolate frequency ranges. These spectrograms then serve as inputs for algorithms for the tags.</p>
+<p><a href="assets/dynamic-spectrogram-rugr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="assets/dynamic-spectrogram-rugr.png" class="img-fluid"></a></p>
+<p><img src="assets/aru-upload.png" class="img-fluid"></p>
+<p>WildTrax provides an integrated interface for developing, testing, and applying automated species identification models based on machine learning algorithms, including Hidden Markov Models (HMMs) and other classifiers.</p>
+<p>The interface comprises four primary components:</p>
+<ul>
+<li><p>Visualizer – Allows users to view, listen to, and annotate acoustic and image data. It supports multiple data formats and devices, with tools for zooming, filtering, and navigating recordings.</p></li>
+<li><p>Species Validation – Enables users to label species presence or absence in recordings, creating validation datasets to assess model accuracy. This module also allows review and correction of ROIs generated automatically.</p></li>
+</ul>
 </section>
 <section id="camera-sensor" class="level3">
 <h3 class="anchored" data-anchor-id="camera-sensor">Camera sensor</h3>
 <p>Camera users can therefore upload, process their image sets with AI, tag the remaining detail, conduct species verification</p>
 </section>
-<section id="point-counts" class="level3">
-<h3 class="anchored" data-anchor-id="point-counts">Point counts</h3>
-<p>The point count “sensor” serves as a repository for the Boreal Avian Modelling Centre’s (borealbirds.ca) point count data. Point counts are harmonized to a specific distance bands which methods are correspondent to ARU methods for synthesis.</p>
+<section id="avian-point-counts" class="level3">
+<h3 class="anchored" data-anchor-id="avian-point-counts">Avian point counts</h3>
+<p>The point count sensor serves as a repository for the <a href="borealbirds.ca">Boreal Avian Modelling Centre’s</a> point count data. Point counts are harmonized to a specific distance bands which methods are correspondent to ARU methods for synthesis. When exported ARU data can be setup in a point count format example ARU -&gt; 0-INF distance band with the ability to format correctable offsets using <code>wt_qpad_offsets()</code> in the wildrtrax package following methods by <span class="citation" data-cites="solymos2013calibrating">Sólymos et al. (<a href="#ref-solymos2013calibrating" role="doc-biblioref">2013</a>)</span>.</p>
 </section>
 </section>
-<section id="analysis" class="level2">
-<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
-<p>We ran an RDA on the differences between observers</p>
-<p>We ran a AUC curve to highlight the differences between AI and species detections</p>
-<p>Here we use the <code>wildrtrax</code> package (v 1.4) for our downstream analysis.</p>
+<section id="data-publication-sharing-and-discovery" class="level2">
+<h2 class="anchored" data-anchor-id="data-publication-sharing-and-discovery">Data publication, sharing and discovery</h2>
+<p>When the project is completed and all Tasks processed, the status of the project can be changed to a published status. Project publication allows other WildTrax users, who are not project members, to access the media, metadata or species detections from the project either through the project context menus &gt; Download Report or <a href="https://discover.wildtrax.ca/">Data Discover</a>. The publication status will control how data will become visible across the system. Project publication will lock users from editing species detections and is considered the final version of the data.</p>
+<p>Data Discover is the central hub for exploring environmental sensor data in WildTrax. In Data Discover, users and the public can search for data from ARUs, cameras, and point counts, using a variety of attribute filters, and create summary statistics within a dynamic mapping interface. Users can gain a comprehensive understanding of environmental sensor data in an area that interests them noting which organizations have published data on WildTrax, which species were detected and to what frequency, and explore media elements such as images and sounds captured in the environment.</p>
+<p><img src="assets/data-discover1.png" class="img-fluid"></p>
+<p><img src="assets/data-discover2.png" class="img-fluid"></p>
+<p><img src="assets/data-discover3.png" class="img-fluid"></p>
 </section>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
-<section id="multiple-observers" class="level2">
-<h2 class="anchored" data-anchor-id="multiple-observers">Multiple observers</h2>
-</section>
-<section id="covariates" class="level2">
-<h2 class="anchored" data-anchor-id="covariates">Covariates</h2>
-<p>In summary, covariates that are easily integrated with the system.</p>
-</section>
-<section id="artificial-intelligence-and-automated-classification" class="level2">
-<h2 class="anchored" data-anchor-id="artificial-intelligence-and-automated-classification">Artificial intelligence and automated classification</h2>
-<p>In summary, AI results can be used as a tool to help users with their environmental sensor data tagging, but human-computer collaboration should always be frought with caution when analyzing results. The complacency of animal identification with AI proves to be a future challenge, disconnecting the ecologist from the species.</p>
-</section>
-<section id="impact-of-privacy-constrained-data-on-biological-metrics" class="level2">
-<h2 class="anchored" data-anchor-id="impact-of-privacy-constrained-data-on-biological-metrics">Impact of privacy-constrained data on biological metrics</h2>
-<p>In summary, increasingly public datasets will help improve modelling and biological metrics used in ecology.</p>
+<section id="growth-and-community" class="level2">
+<h2 class="anchored" data-anchor-id="growth-and-community">Growth and community</h2>
+<p>The sheer growth of media added to the overtime seen in Figure shows how WildTrax and the media therein an exponential curve in the data.</p>
 </section>
 </section>
 <section id="discussion" class="level1">
 <h1>Discussion</h1>
-<p>WildTrax will continue to be a leading force in shaping our environmental sensors use and distribute their data at global scale.</p>
+</section>
+<section id="additional-information-and-declarations" class="level1">
+<h1>Additional Information and Declarations</h1>
+<section id="competing-interests" class="level2">
+<h2 class="anchored" data-anchor-id="competing-interests">Competing Interests</h2>
+<p>The authors declare no competing interests.</p>
+</section>
+<section id="author-contributions" class="level2">
+<h2 class="anchored" data-anchor-id="author-contributions">Author Contributions</h2>
+<p>All authors contributed to manuscript edits and revisions.</p>
+<p>Alexander G. MacPhail led the design of the manuscript, acoustic processing platform, and workflows, conducted data analysis, drafted the manuscript, and served as primary liaison for project coordination and user support.</p>
+<p>Corrina Copp supported platform development and data management, with a particular focus on camera sensor design and development.</p>
+<p>Erin M. Bayne made formative and ongoing contributions to the conceptual development, study design, and overall scientific guidance of the project.</p>
+<p>Michael Packer served as lead developer, overseeing server architecture, back-end development, system scalability, user support, and ensuring robust data processing workflows.</p>
+<p>Chad Klassen designed the user interface, provided front-end development, user support, and led user experience design to optimize accessibility and usability across devices.</p>
+<p>Elly C. Knight provided data standardization, integration and analytical support especially with acoustic classifiers.</p>
+<p>Kevin G. Kelly provided design implementation and testing especially with acoustic classifiers, as well as user support.</p>
+<p>Steve L. Van Wilgenburg provided immeasurable feedback through the creation and use of the system at scale.</p>
+<p>Joan Fang helped with the initial concept and development.</p>
+<p>Monica Kohler provided support during initial funding and conceptual stages.</p>
+<p>Tara Narwani provided support during initial funding and conceptual stages.</p>
+<p>Hedwig E. Lankau contributed to the development of the Bioacoustic Information System, which provided the foundational framework for the design of the acoustic processing system.</p>
+<p>Charles M. Francis provided support, inspiration, and advocacy, which helped secure the funding that made this WildTrax possible. His guidance was instrumental in initiating WildTrax and in shaping earlier work with Avichorus, which served as an inspiration for the platform.</p>
+</section>
 </section>
 <section id="acknowledgements" class="level1">
 <h1>Acknowledgements</h1>
-<p>We gratefully acknowledge the contributions of our collaborators and supporters, including</p>
+<p>This project was supported by funding from Environment and Climate Change Canada, Alberta Environment and Parks, the Oil Sands Monitoring Program, and Canada’s Oil Sands Innovation Alliance. We also extend our gratitude to the following organizations for their partnership and support: U of A Sound Studies Institute, Joint Canada-Alberta Implementation Plan for Oil Sands Monitoring, InnoTech Alberta, University of Alberta, NSERC (Natural Sciences and Engineering Research Council of Canada), PTAC, Devon Energy, ConocoPhillips, Cenovus Energy, Nexen, Imperial Oil, Shell, Suncor Energy, Alberta Pacific Forest Industries Inc., Canadian Natural, Alberta Conservation Association, Parks Canada, University of Alberta, Government of Saskatchewan, and Ɂehdzo Got’ı̨nę Gots’ę́ Nákedı Sahtú Renewable Resources Board. We thank the community of users who continue to make WildTrax a strong guiding force in avian conservation.</p>
 
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-bock1984birds" class="csl-entry" role="listitem">
-Bock, Carl E, and Betsy Webb. 1984. <span>“Birds as Grazing Indicator Species in Southeastern Arizona.”</span> <em>The Journal of Wildlife Management</em> 48 (3): 1045–49.
+<div id="ref-aide2013real" class="csl-entry" role="listitem">
+Aide, T Mitchell, Carlos Corrada-Bravo, Marconi Campos-Cerqueira, Carlos Milan, Giovany Vega, and Rafael Alvarez. 2013. <span>“Real-Time Bioacoustics Monitoring and Automated Species Identification.”</span> <em>PeerJ</em> 1: e103.
+</div>
+<div id="ref-bibby1999making" class="csl-entry" role="listitem">
+Bibby, Colin J. 1999. <span>“Making the Most of Birds as Environmental Indicators.”</span> <em>Ostrich</em> 70 (1): 81–88.
+</div>
+<div id="ref-binley2023minimizing" class="csl-entry" role="listitem">
+Binley, Allison D, Brandon PM Edwards, Gabriel Dansereau, Elly C Knight, and Iman Momeni-Dehaghi. 2023. <span>“Minimizing Data Waste.”</span> <em>Bulletin of the Ecological Society of America</em> 104 (2): 1–11.
+</div>
+<div id="ref-bolton2007remote" class="csl-entry" role="listitem">
+Bolton, Mark, Nigel Butcher, Fiona Sharpe, Danaë Stevens, and Gareth Fisher. 2007. <span>“Remote Monitoring of Nests Using Digital Camera Technology.”</span> <em>Journal of Field Ornithology</em> 78 (2): 213–20.
 </div>
 <div id="ref-buxton2021key" class="csl-entry" role="listitem">
 Buxton, Rachel T, Joseph R Bennett, Andrea J Reid, Charles Shulman, Steven J Cooke, Charles M Francis, Elizabeth A Nyboer, et al. 2021. <span>“Key Information Needs to Move from Knowledge to Action for Biodiversity Conservation in Canada.”</span> <em>Biological Conservation</em> 256: 108983.
+</div>
+<div id="ref-buxton2018pairing" class="csl-entry" role="listitem">
+Buxton, Rachel T, Patrick E Lendrum, Kevin R Crooks, and George Wittemyer. 2018. <span>“Pairing Camera Traps and Acoustic Recorders to Monitor the Ecological Impact of Human Disturbance.”</span> <em>Global Ecology and Conservation</em> 16: e00493.
+</div>
+<div id="ref-canterbury2000bird" class="csl-entry" role="listitem">
+Canterbury, Grant E, Thomas E Martin, Daniel R Petit, Lisa J Petit, and David F Bradford. 2000. <span>“Bird Communities and Habitat as Ecological Indicators of Forest Condition in Regional Monitoring.”</span> <em>Conservation Biology</em> 14 (2): 544–58.
+</div>
+<div id="ref-douglas2003postgresql" class="csl-entry" role="listitem">
+Douglas, Korry, and Susan Douglas. 2003. <em>PostgreSQL: A Comprehensive Guide to Building, Programming, and Administering PostgresSQL Databases</em>. SAMS publishing.
 </div>
 <div id="ref-farley2018situating" class="csl-entry" role="listitem">
 Farley, Scott S, Andria Dawson, Simon J Goring, and John W Williams. 2018. <span>“Situating Ecology as a Big-Data Science: Current Advances, Challenges, and Solutions.”</span> <em>BioScience</em> 68 (8): 563–76.
@@ -233,6 +365,12 @@ Fox, Helen E, Megan D Barnes, Gabby N Ahmadia, Grace Kao, Louise Glew, Kelly Hai
 <div id="ref-fraixedas2020state" class="csl-entry" role="listitem">
 Fraixedas, Sara, Andreas Lindén, Markus Piha, Mar Cabeza, Richard Gregory, and Aleksi Lehikoinen. 2020. <span>“A State-of-the-Art Review on Birds as Indicators of Biodiversity: Advances, Challenges, and Future Directions.”</span> <em>Ecological Indicators</em> 118: 106728.
 </div>
+<div id="ref-furness2013birds" class="csl-entry" role="listitem">
+Furness, Robert W, and Jeremy JD Greenwood. 2013. <em>Birds as Monitors of Environmental Change</em>. Springer Science &amp; Business Media.
+</div>
+<div id="ref-garland2020acoustic" class="csl-entry" role="listitem">
+Garland, Laura, Andrew Crosby, Richard Hedley, Stan Boutin, and Erin Bayne. 2020. <span>“Acoustic Vs. Photographic Monitoring of Gray Wolves (Canis Lupus): A Methodological Comparison of Two Passive Monitoring Techniques.”</span> <em>Canadian Journal of Zoology</em> 98 (3): 219–28.
+</div>
 <div id="ref-gregory2003using" class="csl-entry" role="listitem">
 Gregory, Richard D, David Noble, Rob Field, John Marchant, M Raven, and DW Gibbons. 2003. <span>“Using Birds as Indicators of Biodiversity.”</span> <em>Ornis Hungarica</em> 12 (13): 11–24.
 </div>
@@ -242,35 +380,110 @@ Hallgren, Willow, Linda Beaumont, Andrew Bowness, Lynda Chambers, Erin Graham, H
 <div id="ref-hampton2013big" class="csl-entry" role="listitem">
 Hampton, Stephanie E, Carly A Strasser, Joshua J Tewksbury, Wendy K Gram, Amber E Budden, Archer L Batcheller, Clifford S Duke, and John H Porter. 2013. <span>“Big Data and the Future of Ecology.”</span> <em>Frontiers in Ecology and the Environment</em> 11 (3): 156–62.
 </div>
-<div id="ref-jessen2022contributions" class="csl-entry" role="listitem">
-Jessen, Tyler D, Natalie C Ban, Nicholas XEMŦOLTW Claxton, and Chris T Darimont. 2022. <span>“Contributions of Indigenous Knowledge to Ecological and Evolutionary Understanding.”</span> <em>Frontiers in Ecology and the Environment</em> 20 (2): 93–101.
+<div id="ref-hobson2002acoustic" class="csl-entry" role="listitem">
+Hobson, Keith A, Robert S Rempel, Hamilton Greenwood, Brian Turnbull, and Steven L Van Wilgenburg. 2002. <span>“Acoustic Surveys of Birds Using Electronic Recordings: New Potential from an Omnidirectional Microphone System.”</span> <em>Wildlife Society Bulletin</em>, 709–20.
+</div>
+<div id="ref-huus2025hawkears" class="csl-entry" role="listitem">
+Huus, Jan, Kevin G Kelly, Erin M Bayne, and Elly C Knight. 2025. <span>“HawkEars: A Regional, High-Performance Avian Acoustic Classifier.”</span> <em>Ecological Informatics</em> 87: 103122.
+</div>
+<div id="ref-jetz2012global" class="csl-entry" role="listitem">
+Jetz, Walter, Gavin H Thomas, Jeffery B Joy, Klaas Hartmann, and Arne O Mooers. 2012. <span>“The Global Diversity of Birds in Space and Time.”</span> <em>Nature</em> 491 (7424): 444–48.
+</div>
+<div id="ref-jiguet2007climate" class="csl-entry" role="listitem">
+Jiguet, Frédéric, ANNE-SOPHIE GADOT, Romain Julliard, Stuart E Newson, and Denis Couvet. 2007. <span>“Climate Envelope, Life History Traits and the Resilience of Birds Facing Global Change.”</span> <em>Global Change Biology</em> 13 (8): 1672–84.
+</div>
+<div id="ref-kahl2021birdnet" class="csl-entry" role="listitem">
+Kahl, Stefan, Connor M Wood, Maximilian Eibl, and Holger Klinck. 2021. <span>“BirdNET: A Deep Learning Solution for Avian Diversity Monitoring.”</span> <em>Ecological Informatics</em> 61: 101236.
 </div>
 <div id="ref-kartez2008information" class="csl-entry" role="listitem">
 Kartez, Jack D, and Molly P Casto. 2008. <span>“Information into Action: Biodiversity Data Outreach and Municipal Land Conservation.”</span> <em>Journal of the American Planning Association</em> 74 (4): 467–80.
 </div>
-<div id="ref-lamb2023braiding" class="csl-entry" role="listitem">
-Lamb, Clayton T, Roland Willson, Allyson K Menzies, Naomi Owens-Beek, Michael Price, Scott McNay, Sarah P Otto, et al. 2023. <span>“Braiding Indigenous Rights and Endangered Species Law.”</span> <em>Science</em> 380 (6646): 694–96.
+<div id="ref-kim2021ecobank" class="csl-entry" role="listitem">
+Kim, Hyun Woo, Sungsoo Yoon, Mokyoung Kim, Manseok Shin, Heenam Yoon, and Kidong Kim. 2021. <span>“EcoBank: A Flexible Database Platform for Sharing Ecological Data.”</span> <em>Biodiversity Data Journal</em> 9: e61866.
+</div>
+<div id="ref-kush2020fair" class="csl-entry" role="listitem">
+Kush, Rebecca Daniels, D Warzel, Maura A Kush, Alexander Sherman, Eileen A Navarro, R Fitzmartin, Frank Pétavy, et al. 2020. <span>“FAIR Data Sharing: The Roles of Common Data Elements and Harmonization.”</span> <em>Journal of Biomedical Informatics</em> 107: 103421.
+</div>
+<div id="ref-lepage2014avibase" class="csl-entry" role="listitem">
+Lepage, Denis, Gaurav Vaidya, and Robert Guralnick. 2014. <span>“Avibase–a Database System for Managing and Organizing Taxonomic Concepts.”</span> <em>ZooKeys</em>, no. 420: 117.
+</div>
+<div id="ref-macphail2024audio" class="csl-entry" role="listitem">
+MacPhail, Alexander G, Daniel A Yip, Elly C Knight, Richard Hedley, Michelle Knaggs, Julia Shonfield, Emily Upham-Mills, and Erin M Bayne. 2024. <span>“Audio Data Compression Affects Acoustic Indices and Reduces Detections of Birds by Human Listening and Automated Recognisers.”</span> <em>Bioacoustics</em> 33 (1): 74–90.
 </div>
 <div id="ref-mekonen2017birds" class="csl-entry" role="listitem">
 Mekonen, Sefi. 2017. <span>“Birds as Biodiversity and Environmental Indicator.”</span> <em>Indicator</em> 7 (21).
 </div>
+<div id="ref-michel2020metrics" class="csl-entry" role="listitem">
+Michel, Nicole L, Curtis Burkhalter, Chad B Wilsey, Matt Holloran, Alison Holloran, and Gary M Langham. 2020. <span>“Metrics for Conservation Success: Using the <span>‘Bird-Friendliness Index’</span> to Evaluate Grassland and Aridland Bird Community Resilience Across the Northern Great Plains Ecosystem.”</span> <em>Diversity and Distributions</em> 26 (12): 1687–1702.
+</div>
+<div id="ref-morante2017appraisal" class="csl-entry" role="listitem">
+Morante-Filho, José Carlos, and Deborah Faria. 2017. <span>“An Appraisal of Bird-Mediated Ecological Functions in a Changing World.”</span> <em>Tropical Conservation Science</em> 10: 1940082917703339.
+</div>
 <div id="ref-nathan2022big" class="csl-entry" role="listitem">
 Nathan, Ran, Christopher T Monk, Robert Arlinghaus, Timo Adam, Josep Alós, Michael Assaf, Henrik Baktoft, et al. 2022. <span>“Big-Data Approaches Lead to an Increased Understanding of the Ecology of Animal Movement.”</span> <em>Science</em> 375 (6582): eabg1780.
+</div>
+<div id="ref-newman2007aquatic" class="csl-entry" role="listitem">
+Newman, Scott H, Aleksei Chmura, Kathy Converse, A Marm Kilpatrick, Nikkita Patel, Emily Lammers, and Peter Daszak. 2007. <span>“Aquatic Bird Disease and Mortality as an Indicator of Changing Ecosystem Health.”</span> <em>Marine Ecology Progress Series</em> 352: 299–309.
 </div>
 <div id="ref-niemi1997critical" class="csl-entry" role="listitem">
 Niemi, Gerald J, Joann M Hanowski, Ann R Lima, Tom Nicholls, and Norm Weiland. 1997. <span>“A Critical Analysis on the Use of Indicator Species in Management.”</span> <em>The Journal of Wildlife Management</em>, 1240–52.
 </div>
+<div id="ref-o2008picture" class="csl-entry" role="listitem">
+O’Brien, Timothy G, and Margaret F Kinnaird. 2008. <span>“A Picture Is Worth a Thousand Words: The Application of Camera Trapping to the Study of Birds.”</span> <em>Bird Conservation International</em> 18 (S1): S144–62.
+</div>
+<div id="ref-orme2006global" class="csl-entry" role="listitem">
+Orme, C David L, Richard G Davies, Valerie A Olson, Gavin H Thomas, Tzung-Su Ding, Pamela C Rasmussen, Robert S Ridgely, et al. 2006. <span>“Global Patterns of Geographic Range Size in Birds.”</span> <em>PLoS Biology</em> 4 (7): e208.
+</div>
+<div id="ref-perkel2019ways" class="csl-entry" role="listitem">
+Perkel, Jeffrey M. 2019. <span>“Ways to Avoid a Data-Storage Disaster.”</span> <em>Nature</em> 568 (7750): 131–32.
+</div>
 <div id="ref-peters2014harnessing" class="csl-entry" role="listitem">
 Peters, Debra PC, Kris M Havstad, Judy Cushing, Craig Tweedie, Olac Fuentes, and Natalia Villanueva-Rosales. 2014. <span>“Harnessing the Power of Big Data: Infusing the Scientific Method with Machine Learning to Transform Ecology.”</span> <em>Ecosphere</em> 5 (6): 1–15.
 </div>
-<div id="ref-quinn2011application" class="csl-entry" role="listitem">
-Quinn, John E, James R Brandle, Ron J Johnson, and Andrew J Tyre. 2011. <span>“Application of Detectability in the Use of Indicator Species: A Case Study with Birds.”</span> <em>Ecological Indicators</em> 11 (5): 1413–18.
+<div id="ref-pollet2025technological" class="csl-entry" role="listitem">
+Pollet, Ingrid L, Alexa Arnyek, Julia Ellen Baak, Rikki Clark, Jacob Comeau-Ouellette, Asha C Grewal, Sarah E Gutowsky, et al. 2025. <span>“Technological Advancements: A Global Review of the Use of Camera Technology in Wildlife Research.”</span> <em>Environmental Reviews</em>, no. ja.
+</div>
+<div id="ref-randler2018distance" class="csl-entry" role="listitem">
+Randler, Christoph, and Nadine Kalb. 2018. <span>“Distance and Size Matters: A Comparison of Six Wildlife Camera Traps and Their Usefulness for Wild Birds.”</span> <em>Ecology and Evolution</em> 8 (14): 7151–63.
+</div>
+<div id="ref-reif2013long" class="csl-entry" role="listitem">
+Reif, Jiřı́. 2013. <span>“Long-Term Trends in Bird Populations: A Review of Patterns and Potential Drivers in North America and Europe.”</span> <em>Acta Ornithologica</em> 48 (1): 1–16.
+</div>
+<div id="ref-sekercioglu2012bird" class="csl-entry" role="listitem">
+Sekercioglu, Cagan H. 2012. <span>“Bird Functional Diversity and Ecosystem Services in Tropical Forests, Agroforests and Agricultural Areas.”</span> <em>Journal of Ornithology</em> 153 (Suppl 1): 153–61.
 </div>
 <div id="ref-shin2015ecological" class="csl-entry" role="listitem">
 Shin, Dong-Hee, and Min Jae Choi. 2015. <span>“Ecological Views of Big Data: Perspectives and Issues.”</span> <em>Telematics and Informatics</em> 32 (2): 311–20.
 </div>
+<div id="ref-shonfield2017autonomous" class="csl-entry" role="listitem">
+Shonfield, Julia, and Erin M Bayne. 2017. <span>“Autonomous Recording Units in Avian Ecological Research: Current Use and Future Applications.”</span> <em>Avian Conservation &amp; Ecology</em> 12 (1).
+</div>
+<div id="ref-sitters2016bird" class="csl-entry" role="listitem">
+Sitters, Holly, Julian Di Stefano, Fiona Christie, Matthew Swan, and Alan York. 2016. <span>“Bird Functional Diversity Decreases with Time Since Disturbance: Does Patchy Prescribed Fire Enhance Ecosystem Function?”</span> <em>Ecological Applications</em> 26 (1): 115–27.
+</div>
+<div id="ref-smits2013avian" class="csl-entry" role="listitem">
+Smits, Judit EG, and Kimberly J Fernie. 2013. <span>“Avian Wildlife as Sentinels of Ecosystem Health.”</span> <em>Comparative Immunology, Microbiology and Infectious Diseases</em> 36 (3): 333–42.
+</div>
+<div id="ref-solymos2013calibrating" class="csl-entry" role="listitem">
+Sólymos, Péter, Steven M Matsuoka, Erin M Bayne, Subhash R Lele, Patricia Fontaine, Steve G Cumming, Diana Stralberg, Fiona KA Schmiegelow, and Samantha J Song. 2013. <span>“Calibrating Indices of Avian Density from Non-Standardized Survey Data: Making the Most of a Messy Situation.”</span> <em>Methods in Ecology and Evolution</em> 4 (11): 1047–58.
+</div>
+<div id="ref-stanton2016flexible" class="csl-entry" role="listitem">
+Stanton, Jessica C, Brice X Semmens, Patrick C McKann, Tom Will, and Wayne E Thogmartin. 2016. <span>“Flexible Risk Metrics for Identifying and Monitoring Conservation-Priority Species.”</span> <em>Ecological Indicators</em> 61: 683–92.
+</div>
 <div id="ref-stephenson2020inventory" class="csl-entry" role="listitem">
 Stephenson, PJ, and Carrie Stengel. 2020. <span>“An Inventory of Biodiversity Data Sources for Conservation Monitoring.”</span> <em>PLoS One</em> 15 (12): e0242923.
+</div>
+<div id="ref-temple1989bird" class="csl-entry" role="listitem">
+Temple, Stanley A, and John A Wiens. 1989. <span>“Bird Populations and Environmental Changes: Can Birds Be Bio-Indicators?”</span> <em>American Birds</em> 43 (2): 14.
+</div>
+<div id="ref-yip2017experimentally" class="csl-entry" role="listitem">
+Yip, Daniel A, Lionel Leston, Erin M Bayne, Péter Sólymos, and Alison Grover. 2017. <span>“Experimentally Derived Detection Distances from Audio Recordings and Human Observers Enable Integrated Analysis of Point Count Data.”</span> <em>Avian Conservation and Ecology</em> 12 (1): 11.
+</div>
+<div id="ref-zakaria2005comparison" class="csl-entry" role="listitem">
+Zakaria, Mohamed, Puan Chong Leong, and Muhammad Ezhar Yusuf. 2005. <span>“Comparison of Species Composition in Three Forest Types: Towards Using Bird as Indicator of Forest Ecosystem Health.”</span> <em>Journal of Biological Sciences</em> 5 (6): 734–37.
+</div>
+<div id="ref-zhang2009efficiently" class="csl-entry" role="listitem">
+Zhang, Jianting, Michael Gertz, and Le Gruenwald. 2009. <span>“Efficiently Managing Large-Scale Raster Species Distribution Data in PostgreSQL.”</span> In <em>Proceedings of the 17th ACM SIGSPATIAL International Conference on Advances in Geographic Information Systems</em>, 316–25.
 </div>
 </div></section></div></main>
 <!-- /main column -->
@@ -695,6 +908,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
