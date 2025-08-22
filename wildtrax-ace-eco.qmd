@@ -45,6 +45,7 @@ library(tidyverse)
 library(sf)
 library(DT)
 library(patchwork)
+library(scales)
 
 Sys.setenv(WT_USERNAME = "guest", WT_PASSWORD = "Apple123")
 
@@ -175,11 +176,11 @@ The processing interface provides two principal analysis modes: in Series Mode, 
 
 ### Point count sensor
 
-![](assets/pc-dashboard.png)
+![](assets/pc-dashboard.png){.lightbox}
 
 The Point Count Sensor functions as a central repository for the [Boreal Avian Modelling Centre’s](borealbirds.ca) or BAM's point count data, consolidating observations from multiple surveys into a standardized framework. Point counts are harmonized into specific distance bands, ensuring that methods are consistent with those used for Autonomous Recording Units (ARUs), which facilitates integrated analyses across data types. When exporting ARU data, users can configure it to match a point count format, for example, treating all detections within a single ARU as belonging to a 0–∞ m distance band, allowing synthesis with traditional point count datasets. This harmonization helps to ensure comparability of abundance estimates, species occurrence, and spatial patterns between ARU and human-observed point count data.
  
-![](assets/pc-surveys.png)
+![](assets/pc-surveys.png){.lightbox}
 
 ## Data publication and sharing
 
