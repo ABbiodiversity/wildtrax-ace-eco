@@ -53,10 +53,14 @@ load("wae.RData")
 
 ```
 
-![](assets/data-discover.png){.lightbox style="float:left; border:1px solid #ccc; padding:4px;" fig-alt="Data Discover" fig-align="center"}
-
-
 # Abstract
+
+**-French-**
+
+Au fur et à mesure que les capteurs environnementaux deviennent des outils indispensables pour surveiller et évaluer les populations aviaires, leur efficacité repose sur des systèmes capables de gérer les ensembles de données volumineux et souvent complexes qu’ils génèrent. WildTrax (https://www.wildtrax.ca
+) est une plateforme web conçue pour gérer, stocker, traiter, partager et explorer les données issues de capteurs environnementaux à différentes échelles. Grâce à ses améliorations et à son entretien continus, WildTrax permet aux chercheurs de répondre à des questions écologiques sur de multiples échelles spatiales et temporelles, tout en renforçant le réseau de chercheurs, en favorisant la collaboration et en améliorant le partage de l’information pour soutenir la conservation des oiseaux au Canada et ailleurs.
+
+**-English-**
 
 As environmental sensors become indispensable tools for monitoring and assessing bird population trends, their effectiveness depends on robust systems capable of managing the large, and often overwhelming, datasets they generate. WildTrax (https://www.wildtrax.ca) is a web-based platform built to manage, store, process, share, and discover environmental sensor data from local to international scales. Through its ongoing development and maintenance, WildTrax enables researchers to address ecological questions across multiple spatial and temporal scales, while strengthening the avian data network, fostering collaboration, and enhancing data sharing to support bird conservation in Canada and beyond.
 
@@ -90,15 +94,21 @@ To maximize their utility in an open framework, biodiversity data must align wit
 
 WildTrax uses PostgreSQL, a free and open-source relational database management system (RDBMS). PostgreSQL is well-suited for managing complex biodiversity datasets and rich metadata that accompanies ARU and remote camera data, offering optimized querying, relational structure, and robust storage capabilities (@douglas2003postgresql; @zhang2009efficiently; @kim2021ecobank). The application infrastructure runs on a virtualized server environment configured for dedicated applications. This architecture supports both daily user interactions and more computationally intensive batch tasks, such as uploading large volumes of audio and image files or running artificial intelligence classifiers for species recognition or object detection. To ensure reliability and performance at scale, the system employs load balancing and redundancy measures, enabling near-continuous availability for a large and growing user base. The production server is hosted at the University of Alberta (Edmonton, Canada), with optional long-term storage services available both at the University of Alberta server or through Amazon Web Services (AWS) with nodes available in Calgary, Alberta, Canada; Montreal, Quebec, Canada; and Oregon. Off-site storage uses [AWS Deep Glacier](https://aws.amazon.com/s3/storage-classes/glacier/) providing a recommended 3-2-1 data backup policy (@perkel2019ways). To optimize performance, a local M.2 drive paired with a CPU significantly reduces I/O bottlenecks, enabling data read / write speeds multiple times faster than traditional SSD NAS configurations. In practice, these enhancements improve query response times and batch processing speeds, while the upgraded CPU delivers smoother responsiveness and improved multitasking during high-demand operations. Media files are indexed and linked to the storage location option an Organization chooses.
 
-### Role-based access
+### Role-based access and data security
 
-WildTrax uses [Auth0](https://auth0.com/) for role-based access control (RBAC) system with authentication and authorization enforcing secure login and token-based verification. Data membership and access is based on the principle of least privilege, balancing security, collaboration, and workflow efficiency through access requests or data publication. Permissions are managed at both the Organizational and Project levels. In Organizations, users may be assigned either the Admin or Read role with admin granting full read–write access to Organizational data, while Read provides read-only access, protecting data integrity by restricting modifications. In Projects, the Admin, Tagger and Read roles provide more granular control. Admin enables full project management, including user assignments and syncing data. Tagger allows users to annotate media but restricts administrative functions. Read provides view-only access, supporting collaboration without altering project data. Organizations benefit additional from Principal Investigator roles which serve as the primary account for receive access requests. Data access requests proceed to Organization and Project administrators if the Principal Investigator is not assigned. As Organizations are also parent to Projects, Organization permissions are cascaded down to Projects. 
+WildTrax uses [Auth0](https://auth0.com/), a third-party role-based access control (RBAC) system that provides secure login and token-based authentication and authorization. Data membership and access follow the principle of least privilege, with permissions managed at both the Organization and Project levels. At the Organization level, users are assigned either an Administrator role, with full read–write access, or a Read-Only role, which restricts modifications to protect data integrity. Organizations may also designate a Principal Investigator (PI), who serves as the primary account for handling access requests. If a PI is not assigned, requests are directed to Organization and Project Administrators. At the Project level, roles provide more granular control. Administrators have full management access, including user assignments and data syncing. Taggers can annotate media but do not have administrative privileges. Read-Only users have view-only access, enabling collaboration without altering project data.
 
 ![User assignments](assets/user-assignments.png){.lightbox}
 
 ### Schemas
 
-WildTrax employs a hierarchically structure to maintain data integrity, enforce standardization, and support interoperability of environmental sensors. The system implements three primary data schemas, ARUs, cameras, and point counts, organized into Projects, which act as centralized containers for all observations and sensor outputs associated with a specific study or research question. Organizations sit above Projects in the hierarchy, aggregating multiple Projects and unifying sensor data and media under a consistent framework. Species schemas are also managed across multiple taxonomic levels to allow custom addition of species in Projects individually and in presets.
+WildTrax employs a hierarchical structure to maintain data integrity, enforce standardization, and support interoperability of environmental sensors. The system is built around three primary data schemas, ARUs, cameras, and point counts, which are organized within Projects. Projects serve as centralized containers for all observations and sensor outputs linked to a specific study or research question. At a higher level, Organizations aggregate multiple Projects, bringing sensor data and media together under a unified framework. In addition, species schemas are managed across multiple taxonomic levels, enabling both standardized presets and the custom addition of species within individual Projects.
+
+![Common schema](assets/common-schema.png){.lightbox}
+
+![Organization locations tab](assets/organization-locations.png){.lightbox}
+
+Media uploaded to WildTrax, whether recordings or images, must include a string name prefix and media date-time stamp. For recordings this is contained in the media file name (e.g. `LOCATION_YYYYMMDD_HHMMSS`) and within the parent folder name and EXIF metadata in image files. This way, each media file is explicitly linked to its parent Location, the precise geographic point of deployment, ensuring that sensors and their outputs remain inseparable from their environmental context. The schema enforces referential integrity while streamlining front-end operations such as data retrieval, filtering, and visualization through optimized queries and external APIs. For example, temporal metadata is standardized across sensors (`YYYY-MM-DD HH:MM:SS`), while spatial coordinates are consistently defined at the Location level (longitude, latitude; WGS84). This framework enables multi-dimensional analyses that integrate raw sensor output with ecological, climatic, and biogeographic patterns. From the parent Location, metadata can be expanded through various Organizational tabs: Visits for records of when an observer visited a Location; Equipment, an indexed inventory of devices used to collect media; and Deployments, the record of a specific piece of equipment deployed during a Visit. Together, these metadata provide users with precise information on the exact equipment used to survey each Location and collect media files. This detail strengthens data quality by enabling issues related to mechanical failure, physical damage, environmental conditions, or recording errors to be traced and validated later during processing tasks.
 
 <p float="left">
   <img src="assets/pc-projects.png" alt="Point count project dashboard" width="45%" />
@@ -108,15 +118,7 @@ WildTrax employs a hierarchically structure to maintain data integrity, enforce 
 ![ARU schema](assets/aru-schema.png){.lightbox}
 ![Species schema](assets/species-schema.png){.lightbox}
 
-Within this structure, media are explicitly linked to their parent Location, the precise geographic point of deployment, ensuring that sensors and their outputs are inseparable from their environmental context. The schema enforces referential integrity while also streamlining front-end operations such as data retrieval, filtering, and visualization using optimized queries and external APIs. For example temporal media metadata is aligned between sensors (`YYYY-MM-DD HH:MM:SS`) and spatial coordinates are defined at the Location level (longitude, latitude; WGS84). This framework enables multi-dimensional analyses that connect raw sensor output with ecological, climatic, and biogeographic patterns. From the parent Location, metadata can be added in each of the Organizational tabs for Visits (when an observer has gone to a Location), Equipment (the indexed equipment inventory used to collect the media) and Deployments (when a piece of Equipment has been deployed during a Visit). These metadata in turn provides users with precise information to the exact equipment used to survey the Location and create the media, informing data quality should mechanical, physical, environmental damage or errors occur, which can be later validated in processing Tasks. 
-
-![Common schema](assets/common-schema.png){.lightbox}
-
-![Organization locations tab](assets/organization-locations.png){.lightbox}
-
-## Front-end 
-
-### User interface (UI), user experience (UX) and content management system (CMS)
+## User interface and user experience (UI/UX)
 
 WildTrax’s user interface is a responsive web application built with [Vuejs](https://vuejs.org/, version 3), leveraging its modular component-based architecture, including the Composition API, for scalability, maintainability, and efficient logic reuse. The user interface (UI) is styled and enhanced using [PrimeVue](https://primevue.org/), among other libraries, which delivers rich, customization components such as data tables and dashboards for seamless data exploration and visualization. The application is deployed via an Apache HTTP Server, which serves the front-end and handles API routing through reverse-proxy configurations to back-end services. WildTrax exposes APIs for data exchange and provides export tools in standard scientific formats (e.g., CSV, JSON, text and zip), supporting downstream integration with statistical and geospatial workflows.
 
@@ -128,23 +130,20 @@ Dashboards are designed to give users a clear, intuitive overview of their senso
 
 ![ARU recording upload popup](assets/aru-upload.png){.lightbox}
 
-## Data management and processing
-
 Each sensor processing interface and data management capabilities are tailored to the unique characteristics of its respective data type while ensuring consistency in data harmonization, design, and usability. Within each sensor type, ARUs, cameras and point counts, Projects serve as the core organizational unit, enabling users to upload media, manage processing tasks from recordings or image sets, integrate external data, assign species and user roles, verify species tags, attach ancillary metadata and files, and publish results for discovery and use by other members and the broader community.
 
 ### Acoustic sensor
 
-The design of the acoustic sensor workflow is purported to provide a few steps as possible to maximize the use of the acoustic data. Supported files types are WAC and W4V ([Wildlife Acoustics](https://www.wildlifeacoustics.com/) proprietary lossless compressed file types), [FLAC](https://github.com/xiph/flac) (open-source lossless compressed file types), MP3 (lossy compressed audio; (MPEG-1 Audio Layer III)) and WAV (uncompressed audio). All uploaded file types, except MP3, are converted to using a lossless audio codec, FLAC, that preserves bit-for-bit fidelity while reducing storage needs by approximately 30–70% compared to WAV. FLAC also allows researchers to uncompress the lossless data for use in other applications, avoided any issues that arise with lossy data compression (@macphail2024audio).
+The design of the acoustic sensor workflow is to provide a few steps as possible to maximize the use of the acoustic data for any level of user. Supported audio files types are WAC and W4V ([Wildlife Acoustics](https://www.wildlifeacoustics.com/) proprietary lossless compressed file types), [FLAC](https://github.com/xiph/flac) (open-source lossless compressed file types), MP3 (lossy compressed audio; (MPEG-1 Audio Layer III)) and WAV (uncompressed audio). All uploaded file types, except MP3, are converted to using a lossless audio codec, FLAC, that preserves bit-for-bit fidelity while reducing storage needs by approximately 30–70% compared to WAV. FLAC also allows researchers to uncompress the lossless data for use in other applications, avoided any issues that arise with lossy data compression (@macphail2024audio).
 
-![Acoustic sensor layout with major components](assets/acoustic-sensor.png){.lightbox style="float:left; border:1px solid #ccc; padding:4px;" fig-alt="Acoustic processing interface" fig-align="center"}
+Recordings can be uploaded to either Projects or Organizations, with the media ultimately being owned and stored by the Organization. At the Project level, uploaded recordings become Tasks also allowing the users to assign a duration, processing method and observer to their recording. This unique combination allow recordings to be re-processed at different durations, observers or processing methods allowing for multi-observer data processing (@macphail2025unpublished) and flexibililty of re-using the same audio data for different processing methodologies or questions. Once audio recordings are archived, they are then dynamically converted into spectrograms, visual representations of the audio signals using short-time Fourier transforms (STFT) using the [SoX](https://sourceforge.net/projects/sox/) within the acoustic processing interface. Default project parameters (X-scale for duration of time and Y-scale for spectrogram height in pixels, and colour formatting) define the size and style of the spectrogram but can be changed dynamically using the Audio Settings panel to modify the dimensions and range of the spectral signatures in order to isolate frequency ranges. This is particularly useful to isolate the range of species that can in narrow frequency bands. The processing interface then allows users to playback the audio while viewing the spectrogram, allowing an audio and visual interaction with the data. 
 
-Recordings can be uploaded to either Projects or Organizations, with the media ultimately being owned and stored by the Organization. At the Project level, uploaded recordings become Tasks also allowing the users to assign a duration, processing method and observer to their recording. This unique combination allow recordings to be re-processing at different durations, observers or processing methods allowing for multi-observer data processing (@macphail2025unpublished). Once audio recordings are archived, they are then dynamically converted into spectrograms using short-time Fourier transforms (STFT) using the [SoX](https://sourceforge.net/projects/sox/) within the acoustic processing interface. Default project parameters (X-scale for duration of time and Y-scale for spectrogram height in pixels, and colour formatting) define the size and style of the spectrogram but can be changed dynamically using the Audio Settings panel to modify the dimensions and range of the spectral signatures in order to isolate frequency ranges. This is particularly useful to isolate the range of species that can in narrow frequency bands. The processing interface then allows users to playback the audio while viewing the spectrogram, allowing an audio and visual interaction with the data. 
-
-![](assets/dynamic-audio-settings.png) 
+![Dynamic audio settings panel](assets/dynamic-audio-settings.png){.ligthbox}
+![Ruffed Grouse non-vocal drumming](assets/ruffed-grouse.png){.lightbox}
 
 Various panels support and enhance the acoustic processing workflow in WildTrax. The Weather panel provides environmental context, including temperature, wind speed, precipitation at the nearest hour of the recording, as well as sunrise, sunset, moonrise, moonset, and lunar phase. The AI-assisted classification panel displays species predictions at 1.5-second intervals along the spectrogram, with outputs filterable by classifier-specific score thresholds (BirdNET and HawkEars). Project administrators may also disable overlays entirely through the project settings. The Noise panel allows users to annotate geophonic noise (e.g., wind, rain, ocean), anthropogenic noise (e.g., industry, traffic), or equipment malfunctions. Noise events can be further categorized by channel (left/right), amplitude (low to extreme), and frequency (intermittent, frequent, constant, infrequent).
 
-#### Species tagging and verification
+![Acoustic sensor layout with major components](assets/acoustic-sensor.png){.lightbox style="float:left; border:1px solid #ccc; padding:4px;" fig-alt="Acoustic processing interface" fig-align="center"}
 
 Species detections are recorded as Tags, created when a human observer draws a bounding box around an acoustic signal on the spectrogram taken from the inspiration and design of the Avichorus platform [CITE]. Each Tag captures temporal and frequency information, including date and time of first detection, duration, and frequency range (Hz). The Tag Info Panel enables rapid entry of metadata such as individual identifiers, count estimates, vocalization type, confidence flags, and comments. This structure allows flexibility, for example, a flocking species may be represented by a single Tag with a count estimate greater than one. Tagging is further guided by the Task Method, which enforces consistency and reduces inappropriate annotations.
 
@@ -166,7 +165,7 @@ The WildTrax camera workflow provides two principal analysis modes. In Series Mo
 
 The point count sensor serves as a repository for the [Boreal Avian Modelling Centre's](borealbirds.ca) point count data. Point counts are harmonized to a specific distance bands which methods are correspondent to ARU methods for synthesis. When exported ARU data can be setup in a point count format example ARU -> 0-INF distance band.
 
-## Data publication, sharing and discovery
+## Data publication and sharing
 
 When the project is completed and all Tasks processed, the status of the project can be changed to a published status. Project publication allows other WildTrax users, who are not project members, to access the media, metadata or species detections from the project either through the project context menus > Download Report or [Data Discover](https://discover.wildtrax.ca/). The publication status will control how data will become visible across the system. Project publication will lock users from editing species detections and is considered the final version of the data.
 
@@ -240,7 +239,7 @@ ggplot() +
 
 # Results
 
-Figure X represent the accumulation of the number of camera trap and audio recordings collected within the ABMI and WildTrax framework. Camera images were collected mainly from internal programs from the ABMI and its partners, with WildTrax 1.0 launched in 2018. As of 2025, the platform has added over 2.5 million acoustic recordings and 200 million images. Projects published publically comprises over  from local-to-provincial scale monitoring demonstrating the scalability and generalizability of the system.
+With the acoustic and camera sensor in WildTrax release in 2018 and 2020, respectively, @fig-data-accum shows the cumulative growth of camera-trap images and acoustic recordings within the ABMI and WildTrax framework. Since the launch of WildTrax 1.0 in 2018, contributions from ABMI internal programs and partner organizations have resulted in over 200 million images and 2.5 million acoustic recordings by 2025. Data accumulation has accelerated annually, reflecting increasing uptake of the platform. Projects span local to provincial scales, with a growing proportion published publicly, demonstrating the scalability and broad applicability of the system. The majority of public datasets, mainly those in the point count sensor through BAMs collaborations, now represent ~10% of the proportion of Project holdings, covers hundreds of thousands of km² of monitoring area, encompassing 263 Projects (205 ARU and point count, 58 camera) across 31 different Organizations.
 
 ```{r}
 #| warning: false
@@ -254,8 +253,11 @@ Figure X represent the accumulation of the number of camera trap and audio recor
 #| cap-location: margin
 #| code-fold: true
 
-p
+library(patchwork)
 
+r_plot 
+
+c_plot
 ```
 
 # Discussion and future prospects
@@ -286,19 +288,19 @@ Michael Packer served as lead developer, overseeing server architecture, back-en
 
 Chad Klassen designed the user interface, provided front-end development, user support, and led user experience design to optimize accessibility and usability across devices.
 
-Elly C. Knight provided data standardization, integration and analytical support especially with acoustic classifiers.
-
-Kevin G. Kelly provided design implementation and testing especially with acoustic classifiers, as well as user support.
-
-Steve L. Van Wilgenburg provided immeasurable feedback through the creation and use of the system at scale.
-
 Joan Fang helped with the initial concept and development.
+
+Hedwig E. Lankau contributed to the development of the Bioacoustic Information System, which provided the foundational framework for the design of the acoustic processing system.
 
 Monica Kohler provided support during initial funding and conceptual stages.
 
 Tara Narwani provided support during initial funding and conceptual stages.
 
-Hedwig E. Lankau contributed to the development of the Bioacoustic Information System, which provided the foundational framework for the design of the acoustic processing system.
+Steve L. Van Wilgenburg provided immeasurable feedback through the creation and use of the system at scale.
+
+Elly C. Knight provided data standardization, integration and analytical support especially with acoustic classifiers.
+
+Kevin G. Kelly provided design implementation and testing especially with acoustic classifiers, as well as user support.
 
 Charles M. Francis provided support, inspiration, and advocacy, which helped secure the funding that made this WildTrax possible. His guidance was instrumental in initiating WildTrax and in shaping earlier work with Avichorus, which served as an inspiration for the platform.
 
